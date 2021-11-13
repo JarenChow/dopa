@@ -1,0 +1,25 @@
+{
+  "name": "dopa",
+  "version": "1.0.0",
+  "description": "HTML5 canvas 2d library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JarenChow/dopa.git"
+  },
+  "keywords": [
+    "javascript",
+    "canvas",
+    "2d",
+    "library"
+  ],
+  "author": "JarenChow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JarenChow/dopa/issues"
+  },
+  "homepage": "https://github.com/JarenChow/dopa#readme"
+}
