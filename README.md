@@ -24,11 +24,11 @@ HTML5 canvas 2d library
 **dopa** 的灵活性在初始化时的体现：
 
 ```javascript
-let layer = new dopa.Canvas({
-  container: '#app', // 通常是 div 容器的 '#id' 或引用
-  width: 300,        // 手动指定画布的宽高
-  height: 200,       // 如果不指定则适配容器宽高
-  pixelRatio: 1,     // 如果不指定则适配高清屏
+let layer = new dopa.Canvas({ // 新建画布 layer
+  container: '#app',          // 通常是 div 容器的 '#id' 或引用
+  width: 300,                 // 手动指定画布的宽高
+  height: 200,                // 如果不指定则适配容器宽高
+  pixelRatio: 1,              // 如果不指定则适配高清屏
 });
 ```
 
@@ -46,7 +46,7 @@ ctx.fillRect(50, 50, 100, 50); // 回到原生开发模式
 如果觉得这还不够，还有兴趣探索的话，那么有一种更好的方式：
 
 ```javascript
-let rect = layer.create('rect', { // 使用 layer 创建矩形
+let rect = layer.create('rect', { // 使用画布 layer 创建矩形
   x: 150,
   y: 100,                         // 设置矩形的坐标
   width: 100,
@@ -69,7 +69,7 @@ rect.fill();                 // 矩形再次执行绘制
 
 ![](https://cdn.jsdelivr.net/gh/JarenChow/ImageHosting@master/image/dopa/three.png)
 
-> 令人激动的是，创建的形状互相之间不会有任何影响！
+> 令人激动的是，创建的形状之间互不影响，持有各自独立的属性和公共的方法！
 
 # 示例
 
@@ -443,7 +443,7 @@ console.log(rand(-2, 2, true)); // output: -2/-1/0/1/2
 
 ## \#Alpha(alpha): Alpha;
 
-`Alpha` 构造函数。
+透明度 `Alpha` 构造函数。
 
 ### 属性
 
@@ -467,7 +467,7 @@ console.log(rand(-2, 2, true)); // output: -2/-1/0/1/2
 
 ## Rgb(red, green, blue, alpha) extends Alpha: Rgb;
 
-`Rgb` 构造函数，继承于 `Alpha`。
+三原色 `Rgb` 构造函数。
 
 ### 静态方法
 
@@ -683,7 +683,7 @@ console.log(rgb.toHex(true)); // output: #7fcc407f
 
 ## Hsl(hue, saturation, lightness, alpha) extends Alpha: Hsl;
 
-`Hsl` 构造函数，继承于 `Alpha`。
+色彩模式 `Hsl` 构造函数。
 
 ### 属性
 
@@ -745,7 +745,7 @@ console.log(hsl.toString()); // output: hsl(30.117647..., 100%, 50%)
 
 ## Lab(lightness, a, b, alpha) extends Alpha: Lab;
 
-`Lab` 构造函数，继承于 `Alpha`。
+色彩模式 `Lab` 构造函数。
 
 ### 属性
 
@@ -874,7 +874,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Animation(duration, interval) extends Animate: Animation;
 
-主动画循环 `Animation` 构造函数，继承于 `Animate`。
+主动画循环 `Animation` 构造函数。
 
 ### 方法
 
@@ -896,7 +896,9 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Canvas(container, width, height, pixelRatio, duration, interval) extends Animation: Canvas;
 
-图层 `Canvas` 构造函数，继承于 `Animation`。`container` 可以是容器 `'#id'` 或 `{container, width, height, pixelRatio, duration, interval}` 配置对象。
+图层 `Canvas` 构造函数。
+
+`container` 可以是容器 `'#id'` 或 `{container, width, height, pixelRatio, duration, interval}` 配置对象。
 
 ### 属性
 
@@ -1019,7 +1021,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Animator(duration, interval) extends Animate: Animator;
 
-子动画循环 `Animator` 构造函数，继承于 `Animate`。
+子动画循环 `Animator` 构造函数。
 
 ### 属性
 
@@ -1043,7 +1045,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Point(x, y): Point;
 
-`Point` 点的构造函数。
+点 `Point` 构造函数。
 
 ### 属性
 
@@ -1176,7 +1178,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## ImageData(x, y, width_or_imageData, height_or_width, dirtyX, dirtyY, dirtyWidth, dirtyHeight) extends Point: ImageData;
 
-`window.ImageData` 的包装器 `ImageData` 构造函数，继承于 `Point`，对 `devicePixelRatio` 敏感。
+`window.ImageData` 的包装器 `ImageData` 构造函数，对 `devicePixelRatio` 敏感。
 
 ### 属性
 
@@ -1372,7 +1374,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Group(originX, originY) extends Point: Group;
 
-组 `Group` 构造函数，继承于 `Point`，可作为其他组或形状的父级。
+组 `Group` 构造函数，可作为其他组或形状的父级。
 
 需要注意的是，区别于点的变形方法是改变点的坐标 `x, y`，组的变形是依据 `originX, originY` 而改变的组本身的错切、缩放及旋转。
 
@@ -1565,7 +1567,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Shape(startX, startY, originX, originY) extends Group: Shape;
 
-图形 `Shape` 构造函数，继承于 `Group`，具备绘制能力，也是所有图形的父类。
+图形 `Shape` 构造函数，具备绘制能力，也是所有图形的父类。
 
 ### 属性
 
@@ -1706,7 +1708,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Rect(startX, startY, width, height, originX, originY) extends Shape: Rect;
 
-矩形 `Rect` 构造函数，继承于 `Shape`。
+矩形 `Rect` 构造函数。
 
 ### 属性
 
@@ -1736,7 +1738,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Grid(startX, startY, width, height, spacing, originX, originY) extends Rect: Grid;
 
-网格 `Grid` 构造函数，继承于 `Rect`。
+网格 `Grid` 构造函数。
 
 ### 属性
 
@@ -1746,7 +1748,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## RoundRect(startX, startY, width, height, radius, originX, originY) extends Rect: RoundRect;
 
-圆角矩形 `RoundRect` 构造函数，继承于 `Rect`。
+圆角矩形 `RoundRect` 构造函数。
 
 ### 属性
 
@@ -1756,7 +1758,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Image(startX, startY, src_or_image, originX, originY, width, height, cropX, cropY, cropWidth, cropHeight) extends Rect: Image;
 
-`window.Image` 的包装器图像 `Image` 构造函数，继承于 `Rect`。
+`window.Image` 的包装器图像 `Image` 构造函数。
 
 ### 属性
 
@@ -1814,15 +1816,15 @@ CSS 滤镜，默认值 `'none'`。
 
 绘制 `image`。
 
-## Wave(startX, startY, width, height, amplitude, method, period, phase, originX, originY) extends Rect: Wave;
+## Wave(startX, startY, width, height, amplitude, method, period, phase, step, originX, originY) extends Rect: Wave;
 
-波浪形 `Wave` 构造函数，继承于 `Rect`。 
+波浪形 `Wave` 构造函数。
 
 ### 属性
 
 #### amplitude: number;
 
-振幅，默认值 `Math.max(width, height) / 8`。
+振幅，默认值 `10`。
 
 #### method: Function;
 
@@ -1836,9 +1838,13 @@ CSS 滤镜，默认值 `'none'`。
 
 初始相位，默认值 `0`。
 
+#### step: number;
+
+步进，正整数，默认值 `1`。
+
 ## Text(startX, startY, text, maxWidth, originX, originY) extends Shape: Text;
 
-文字 `Text` 构造函数，继承于 `Shape`。
+文字 `Text` 构造函数。
 
 ### 属性
 
@@ -1884,7 +1890,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Arc(startX, startY, radius, startAngle, endAngle, anticlockwise, originX, originY) extends Shape: Arc;
 
-圆弧 `Arc` 构造函数，继承于 `Shape`。
+圆弧 `Arc` 构造函数。
 
 ### 属性
 
@@ -1914,11 +1920,11 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Sector(startX, startY, radius, startAngle, endAngle, anticlockwise, originX, originY) extends Arc: Sector;
 
-扇形 `Sector` 构造函数，继承于 `Arc`。
+扇形 `Sector` 构造函数。
 
 ## Ring(startX, startY, outerRadius, innerRadius, startAngle, endAngle, anticlockwise, originX, originY) extends Arc: Ring;
 
-圆环 `Ring` 构造函数，继承于 `Arc`。
+圆环 `Ring` 构造函数。
 
 ### 属性
 
@@ -1932,7 +1938,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Ellipse(startX, startY, radiusX, radiusY, startAngle, endAngle, anticlockwise, originX, originY) extends Arc: Ellipse;
 
-椭圆 `Ellipse` 构造函数，继承于 `Arc`。
+椭圆 `Ellipse` 构造函数。
 
 ### 属性
 
@@ -1946,7 +1952,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Isogon(startX, startY, radius, sides, originX, originY) extends Shape: Isogon;
 
-正多边形 `Isogon` 构造函数，继承于 `Shape`。
+正多边形 `Isogon` 构造函数。
 
 ### 属性
 
@@ -1968,15 +1974,15 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Star(startX, startY, radius, sides, originX, originY) extends Isogon: Star;
 
-正多角形 `Star` 构造函数，继承于 `Isogon`。
+正多角形 `Star` 构造函数。
 
 ## Koch(startX, startY, radius, sides, originX, originY) extends Isogon: Koch;
 
-科赫雪花分形 `Koch` 构造函数，继承于 `Isogon`。
+科赫雪花分形 `Koch` 构造函数。
 
 ## Line(startX, startY, endX, endY, originX, originY) extends Shape: Line;
 
-线段 `Line` 构造函数，继承于 `Shape`。
+线段 `Line` 构造函数。
 
 ### 属性
 
@@ -1998,7 +2004,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Link(startX, startY, endX, endY, controlX, controlY, originX, originY) extends Line: Link;
 
-连接线 `Link` 构造函数，继承于 `Line`。使用 `3` 个点生成一段圆弧或线段。
+连接线 `Link` 构造函数。使用 `3` 个点生成一段圆弧或线段。
 
 ### 属性
 
@@ -2020,7 +2026,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Curve(startX, startY, endX, endY, controlX1, controlY1, controlX2, controlY2, originX, originY) extends Link: Curve;
 
-贝塞尔曲线 `Curve` 构造函数，继承于 `Link`。有以下 `3` 种表现形式：
+贝塞尔曲线 `Curve` 构造函数。有以下 `3` 种表现形式：
 
 1. 存在 0 个控制点，表现为线段
 2. 存在 1 个控制点，表现为二次贝塞尔曲线
@@ -2058,7 +2064,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Triangle(startX, startY, length, angle, originX, originY) extends Shape: Triangle;
 
-等腰三角形 `Triangle` 构造函数，继承于 `Shape`。使用顶角垂线长度与顶角角度来定义。
+等腰三角形 `Triangle` 构造函数。使用顶角垂线长度与顶角角度来定义。
 
 ### 属性
 
@@ -2072,19 +2078,19 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Droplet(startX, startY, length, angle, originX, originY) extends Triangle: Droplet;
 
-水滴形 `Droplet` 构造函数，继承于 `Triangle`。
+水滴形 `Droplet` 构造函数。
 
 ## Heart(startX, startY, length, angle, originX, originY) extends Triangle: Heart;
 
-心形 `Heart` 构造函数，继承于 `Triangle`。
+心形 `Heart` 构造函数。
 
 ## Pin(startX, startY, length, angle, originX, originY) extends Triangle: Pin;
 
-大头针形 `Pin` 构造函数，继承于 `Triangle`。
+大头针形 `Pin` 构造函数。
 
 ## Path(startX, startY, path, originX, originY) extends Shape: Path;
 
-`window.Path2D` 的包装器路径 `Path` 构造函数，继承于 `Shape`。
+`window.Path2D` 的包装器路径 `Path` 构造函数。
 
 ### 属性
 
@@ -2201,7 +2207,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## PolyShape(startX, startY, points, length, originX, originY) extends Shape: PolyShape;
 
-以原始数据点来驱动的图形 `PolyShape` 构造函数，继承于 `Shape`。
+以原始数据点来驱动的图形 `PolyShape` 构造函数。
 
 ### 属性
 
@@ -2292,27 +2298,27 @@ CSS 滤镜，默认值 `'none'`。
 
 ## \#PolylineLike(startX, startY, points, length, originX, originY) extends PolyShape: PolylineLike;
 
-私有、抽象的类折线段 `PolylineLike` 构造函数，继承于 `PolyShape`。
+私有、抽象的类折线段 `PolylineLike` 构造函数。
 
 ## Polyline(startX, startY, points, length, originX, originY) extends PolylineLike: Polyline;
 
-折线段 `Polyline` 构造函数，继承于 `PolylineLike`。
+折线段 `Polyline` 构造函数。
 
 ## Bezier(startX, startY, points, length, originX, originY) extends PolylineLike: Bezier;
 
-多阶贝塞尔曲线 `Bezier` 构造函数，继承于 `PolylineLike`。
+多阶贝塞尔曲线 `Bezier` 构造函数。
 
 ## \#PolygonLike(startX, startY, points, length, originX, originY) extends PolylineLike: PolygonLike;
 
-私有、抽象的类多边形 `PolygonLike` 构造函数，继承于 `PolylineLike`。
+私有、抽象的类多边形 `PolygonLike` 构造函数。
 
 ## Polygon(startX, startY, points, length, originX, originY) extends PolygonLike: Polygon;
 
-多边形 `Polygon` 构造函数，继承于 `PolygonLike`。
+多边形 `Polygon` 构造函数。
 
 ## Rectangle(startX, startY, points, length, originX, originY) extends PolygonLike: Rectangle;
 
-矩形 `Rectangle` 构造函数，继承于 `PolygonLike`。
+矩形 `Rectangle` 构造函数。
 
 ### 属性
 
@@ -2342,7 +2348,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Circle(startX, startY, points, length, originX, originY) extends PolygonLike: Circle;
 
-圆形 `Circle` 构造函数，继承于 `PolygonLike`。
+圆形 `Circle` 构造函数。
 
 ### 属性
 
@@ -2360,7 +2366,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## SuperEllipse(startX, startY, points, length, exponent, originX, originY) extends PolygonLike: SuperEllipse;
 
-超椭圆 `SuperEllipse` 构造函数，继承于 `PolygonLike`。
+超椭圆 `SuperEllipse` 构造函数。
 
 ### 属性
 
@@ -2370,7 +2376,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## SmoothLine(startX, startY, points, length, tension, originX, originY) extends PolyShape: SmoothLine;
 
-平滑曲线 `SmoothLine` 构造函数，继承于 `PolyShape`。
+平滑曲线 `SmoothLine` 构造函数。
 
 ### 属性
 
