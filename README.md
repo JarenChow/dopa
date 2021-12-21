@@ -261,29 +261,6 @@ let width = dopa.util.measureTextWidth('Hello Dopa', '12px san-serif');
 console.log(width); // output: 64.552734375
 ```
 
-#### measureTextFontSize(text: string, width: number, fontFamily: string, min?: number, max?: number): number;
-
-二分法计算文本 `text` 处于 `width` 最大宽度限制下，以 `fontFamily` 为字体，所应该具备的 `fontSize`，`min`/`max` 可配置限制结果 `fontSize` 值的范围。
-
-##### 参数
-
-- text，待测量文本，如 'Hello Dopa'
-- width，限制文本的最大宽度，如 100
-- fontFamily，字体系列类型，如 'sans-serif'
-- min，限制结果的最小值，如 8，限制结果 fontSize 最小为 8
-- max，限制结果的最大值，如 32，限制结果 fontSize 最大为 32
-
-##### 示例
-
-假设有一串文本 `Hello Dopa` 要绘制在 `100` 宽度的矩形中，字体系列为 `sans-serif`，可以用如下方式计算 `fontSize` 字体大小：
-
-```javascript
-let fontFamily = 'sans-serif';
-let fontSize = dopa.util.measureTextFontSize('Hello Dopa', 100, fontFamily);
-let targetFont = fontSize + 'px ' + fontFamily;
-console.log(targetFont); // output: 18px sans-serif
-```
-
 #### loadImage(src: string, callback: (image: HTMLImageElement, success: boolean) => void, thisArg?: any): void;
 
 从 `src` 地址加载一张图片，加载后会触发 `callback` 回调。
@@ -661,7 +638,7 @@ console.log(rgb.blue);  // output: 231.11459...
 let rgb = new dopa.Rgb(127, 255, 64, 127);
 rgb.green -= 51;
 console.log(rgb.toString());     // output: rgb(127, 204, 64)
-console.log(rgb.toString(true)); // output: rgba(127, 204, 64, 0.498039...)
+console.log(rgb.toString(true)); // output: rgba(127, 204, 64, 0.49803...)
 ```
 
 #### toHex(alpha: boolean): string;
@@ -732,7 +709,7 @@ console.log(hsl.toString()); // output: hsl(30, 100%, 30%)
 let hsl = new dopa.Hsl();
 let rgb = new dopa.Rgb(255, 128, 0);
 hsl.fromRgb(rgb);
-console.log(hsl.toString()); // output: hsl(30.117647..., 100%, 50%)
+console.log(hsl.toString()); // output: hsl(30.11764..., 100%, 50%)
 ```
 
 #### toString(alpha: boolean): string;
@@ -1856,13 +1833,32 @@ CSS 滤镜，默认值 `'none'`。
 
 文本最大宽度，默认值 `undefined`。
 
+#### width: number;
+
+文本宽度，通常此宽度值由 `font` 影响，通过手动设置此值，可反之修改以 `px` 为单位的 `font` 样式。
+
+##### 示例
+
+```javascript
+let text = layer.create('text', {
+  x: 100,
+  y: 100,
+  text: 'Hello Dopa',
+  font: '12px sans-serif'
+});
+text.fill();
+console.log(text.width); // output: 64.55273...
+console.log(text.font);  // output: 12px sans-serif
+text.width = 100;
+text.y += 50;
+text.fill();
+console.log(text.width); // output: 96.82910...
+console.log(text.font)   // output: 18px sans-serif
+```
+
 #### readonly metrics: TextMetrics;
 
 只读属性 `metrics`，获取文本处于当前文字样式下的 `TextMetrics` 对象。
-
-#### readonly width: number;
-
-只读属性文本宽度。
 
 #### readonly actualBoundingBoxWidth: number;
 
