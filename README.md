@@ -2,6 +2,15 @@
 
 HTML5 canvas 2d library
 
+# 目录
+
+1. [简介](#简介)
+2. [安装](#安装)
+3. [初体验](#初体验)
+4. [示例](#示例)
+5. [结构](#结构)
+6. [文档](#文档)
+
 # 简介
 
 **dopa** 的出现不是为了在现已存在的众多 *canvas 2d* 开发框架中独树一帜或特立独行，它并不为了增加心智负担而生。
@@ -73,9 +82,9 @@ rect.fill();                 // 矩形再次执行绘制
 
 # 示例
 
-1. [dopa-corner](https://JarenChow.github.io/dopa-corner)
-2. [dopa-stats](https://JarenChow.github.io/dopa-stats)
-3. [dopa-benchmark](https://JarenChow.github.io/dopa/test/benchmark.html)
+1. [dopa-corner](https://JarenChow.github.io/dopa-corner)：[tholman/github-corners](https://github.com/tholman/github-corners) 的 dopa 实现
+2. [dopa-stats](https://JarenChow.github.io/dopa-stats)：[mrdoob/stats.js](https://github.com/mrdoob/stats.js) 的 dopa 实现
+3. [dopa-benchmark](https://JarenChow.github.io/dopa/test/benchmark.html)：原生 API、ZRender 以及 Dopa 的渲染性能测试
 
 # 结构
 
