@@ -75,6 +75,7 @@ rect.fill();                 // 矩形再次执行绘制
 
 1. [dopa-corner](https://JarenChow.github.io/dopa-corner)
 2. [dopa-stats](https://JarenChow.github.io/dopa-stats)
+3. [dopa-benchmark](https://JarenChow.github.io/dopa/test/benchmark.html)
 
 # 结构
 

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Benchmark</title>
+  <script src="https://cdn.jsdelivr.net/npm/dopa"></script>
+  <script src="https://cdn.jsdelivr.net/npm/zrender@4.2.0/dist/zrender.js"></script>
+  <script>// stats.js - http://github.com/mrdoob/stats.js
+    (function(f,e){"object"===typeof exports&&"undefined"!==typeof module?module.exports=e():"function"===typeof define&&define.amd?define(e):f.Stats=e()})(this,function(){var f=function(){function e(a){c.appendChild(a.dom);return a}function u(a){for(var d=0;d<c.children.length;d++)c.children[d].style.display=d===a?"block":"none";l=a}var l=0,c=document.createElement("div");c.style.cssText="position:fixed;top:0;left:0;cursor:pointer;opacity:0.9;z-index:10000";c.addEventListener("click",function(a){a.preventDefault();u(++l%c.children.length)},!1);var k=(performance||Date).now(),g=k,a=0,r=e(new f.Panel("FPS","#0ff","#002")),h=e(new f.Panel("MS","#0f0","#020"));if(self.performance&&self.performance.memory)var t=e(new f.Panel("MB","#f08","#201"));u(0);return{REVISION:16,dom:c,addPanel:e,showPanel:u,begin:function(){k=(performance||Date).now()},end:function(){a++;var c=(performance||Date).now();h.update(c-k,50);if(c>=g+1E3&&(r.update(1E3*a/(c-g),100),g=c,a=0,t)){var d=performance.memory;t.update(d.usedJSHeapSize/1048576,d.jsHeapSizeLimit/1048576)}return c},update:function(){k=this.end()},domElement:c,setMode:u}};f.Panel=function(e,f,l){var c=Infinity,k=0,g=Math.round,a=g(window.devicePixelRatio||1),r=80*a,h=48*a,t=3*a,v=2*a,d=3*a,m=15*a,n=74*a,p=30*a,q=document.createElement("canvas");q.width=r;q.height=h;q.style.cssText="width:80px;height:48px";var b=q.getContext("2d");b.font="bold "+9*a+"px Helvetica,Arial,sans-serif";b.textBaseline="top";b.fillStyle=l;b.fillRect(0,0,r,h);b.fillStyle=f;b.fillText(e,t,v);b.fillRect(d,m,n,p);b.fillStyle=l;b.globalAlpha=.9;b.fillRect(d,m,n,p);return{dom:q,update:function(h,w){c=Math.min(c,h);k=Math.max(k,h);b.fillStyle=l;b.globalAlpha=1;b.fillRect(0,0,r,m);b.fillStyle=f;b.fillText(g(h)+" "+e+" ("+g(c)+"-"+g(k)+")",t,v);b.drawImage(q,d+a,m,n-a,p,d,m,n-a,p);b.fillRect(d+n-a,m,a,p);b.fillStyle=l;b.globalAlpha=.9;b.fillRect(d+n-a,m,a,g((1-h/w)*p))}}};return f});
+  </script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dopa-corner"></script>
+</head>
+<body style="margin:0;">
+
+<h1>Current render mode: <span id="mode"></span></h1>
+<div>
+  <div id="fps" style="display: inline-block;"></div>
+  <input type="button" onclick="render('base')" value="base"/>
+  <input type="button" onclick="render('zrender')" value="zrender"/>
+  <input type="button" onclick="render('dopa')" value="dopa"/>
+</div>
+
+<div id="main" style="width:600px;height:600px;"></div>
+<div id="corner" style="position: fixed;top: 0;right: 0;width: 80px;height: 80px;"></div>
+
+<h1>Specific render code: </h1>
+<p id="code">
+  TEST
+</p>
+
+<script type="text/javascript">
+  var stats = new Stats();
+  stats.dom.style.position = '';
+  document.querySelector('#fps').appendChild(stats.dom);
+  createCorner('#corner');
+
+  var currentMode = null;
+
+  function render(mode) {
+    var domMode = document.querySelector('#mode');
+    if (domMode.innerHTML === mode) return;
+    domMode.innerHTML = mode;
+    currentMode && currentMode.destroy();
+    currentMode = renderMap[mode]();
+    console.time('create ' + mode);
+    currentMode.create();
+    console.timeEnd('create ' + mode);
+    document.querySelector('#code').innerHTML=currentMode.code;
+  }
+
+  var renderMap = {
+    base: renderWithBase,
+    zrender: renderWithZRender,
+    dopa: renderWithDopa
+  };
+
+  function renderWithBase() {
+    return {
+      create: function () {
+        var canvas = document.createElement('canvas'),
+          ctx = canvas.getContext('2d'),
+          dpr = window.devicePixelRatio || 1;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.scale(dpr, dpr);
+        document.querySelector('#main').appendChild(canvas);
+        this.canvas = canvas;
+        this.context = ctx;
+      },
+      render: function () {
+        var ctx = this.context;
+        ctx.clearRect(0, 0, width, height);
+        for (var i = 0; i < points.length; i++) {
+          var point = points[i];
+          ctx.fillStyle = point.color;
+          ctx.beginPath();
+          ctx.rect(point.x, point.y, pointWidth, pointWidth);
+          ctx.fill();
+        }
+      },
+      destroy: function () {
+        document.querySelector('#main').removeChild(this.canvas);
+      },
+      code: 'ctx.fillStyle = point.color;<br/>' +
+              'ctx.beginPath();<br/>' +
+              'ctx.rect(point.x, point.y, pointWidth, pointWidth);<br/>' +
+              'ctx.fill();'
+    };
+  }
+
+  function renderWithZRender() {
+    return {
+      create: function () {
+        var zr = zrender.init(document.getElementById('main'), {
+          renderer: 'canvas'
+          // devicePixelRatio: 1
+        });
+        this.zr = zr;
+        var rects = [];
+        for (var i = 0; i < points.length; i++) {
+          var point = points[i];
+          var rect = new zrender.Rect({
+            shape: {
+              width: pointWidth,
+              height: pointWidth
+            },
+            style: {
+              fill: point.color
+            },
+            silent: true
+          });
+          zr.add(rect);
+          rects.push(rect);
+        }
+        this.rects = rects;
+      },
+      render: function () {
+        var rects = this.rects;
+        for (var i = 0; i < rects.length; i++) {
+          var rect = rects[i], point = points[i];
+          rect.shape.x = point.x;
+          rect.shape.y = point.y;
+          rect.dirtyShape ? rect.dirtyShape() : rect.dirty(true);
+        }
+      },
+      destroy: function () {
+        this.zr.dispose();
+        this.rects = null;
+      },
+      code: 'rect.shape.x = point.x;<br/>' +
+              'rect.shape.y = point.y;<br/>' +
+              'rect.dirtyShape ? rect.dirtyShape() : rect.dirty(true);'
+    };
+  }
+
+  function renderWithDopa() {
+    return {
+      create: function () {
+        var layer = new dopa.Canvas({
+          container: '#main'
+          // pixelRatio: 1
+        });
+        var rects = [];
+        for (var i = 0; i < points.length; i++) {
+          var point = points[i];
+          rects.push(layer.create('rect', {
+            width: pointWidth,
+            height: pointWidth,
+            fillStyle: point.color
+          }));
+        }
+        layer.on('destroy', () => layer.container.removeChild(layer.wrapper));
+        this.layer = layer;
+        this.rects = rects;
+      },
+      render: function () {
+        var rects = this.rects;
+        this.layer.clearRect(0, 0, width, height);
+        for (var i = 0; i < rects.length; i++) {
+          var rect = rects[i], point = points[i];
+          rect.startX = point.x;
+          rect.startY = point.y;
+          rect.fill();
+        }
+      },
+      destroy: function () {
+        this.layer.destroy();
+        this.rects = null;
+      },
+      code: 'rect.startX = point.x;<br/>' +
+              'rect.startY = point.y;<br/>' +
+              'rect.fill();'
+    };
+  }
+
+  function phyllotaxisLayout(points, pointWidth, xOffset = 0, yOffset = 0, iOffset = 0) {
+    var theta = Math.PI * (3 - Math.sqrt(5));
+    var pointRadius = pointWidth / 2;
+    points.forEach((point, i) => {
+      var index = (i + iOffset) % points.length;
+      var phylloX = pointRadius * Math.sqrt(index) * Math.cos(index * theta);
+      var phylloY = pointRadius * Math.sqrt(index) * Math.sin(index * theta);
+      point.x = xOffset + phylloX - pointRadius;
+      point.y = yOffset + phylloY - pointRadius;
+    });
+    return points;
+  }
+
+  function gridLayout(points, pointWidth, gridWidth) {
+    var pointHeight = pointWidth;
+    var pointsPerRow = Math.floor(gridWidth / pointWidth);
+    points.forEach((point, i) => {
+      point.x = pointWidth * (i % pointsPerRow);
+      point.y = pointHeight * Math.floor(i / pointsPerRow);
+    });
+    return points;
+  }
+
+  function randomLayout(points, pointWidth, width, height) {
+    points.forEach((point) => {
+      point.x = Math.random() * (width - pointWidth);
+      point.y = Math.random() * (height - pointWidth);
+    });
+    return points;
+  }
+
+  function sineLayout(points, pointWidth, width, height) {
+    var amplitude = 0.3 * (height / 2);
+    var yOffset = height / 2;
+    var periods = 3;
+    var yScale = d3.scaleLinear()
+      .domain([0, points.length - 1])
+      .range([0, periods * 2 * Math.PI]);
+    points.forEach((point, i) => {
+      point.x = (i / points.length) * (width - pointWidth);
+      point.y = amplitude * Math.sin(yScale(i)) + yOffset;
+    });
+    return points;
+  }
+
+  function spiralLayout(points, pointWidth, width, height) {
+    var xOffset = width / 2;
+    var yOffset = height / 2;
+    var periods = 20;
+    var rScale = d3.scaleLinear()
+      .domain([0, points.length - 1])
+      .range([0, Math.min(width / 2, height / 2) - pointWidth]);
+    var thetaScale = d3.scaleLinear()
+      .domain([0, points.length - 1])
+      .range([0, periods * 2 * Math.PI]);
+    points.forEach((point, i) => {
+      point.x = rScale(i) * Math.cos(thetaScale(i)) + xOffset
+      point.y = rScale(i) * Math.sin(thetaScale(i)) + yOffset;
+    });
+    return points;
+  }
+
+  function createPoints(numPoints, pointWidth, width, height) {
+    var colorScale = d3.scaleSequential(d3.interpolateViridis)
+      .domain([numPoints - 1, 0]);
+    var points = d3.range(numPoints).map(id => ({
+      id,
+      color: colorScale(id),
+    }));
+    return randomLayout(points, pointWidth, width, height);
+  }
+
+  var width = 600;
+  var height = 600;
+
+  var numPoints = 10000;
+  var pointWidth = 3;
+  var pointMargin = 3;
+
+  var duration = 1500;
+  var ease = d3.easeCubic;
+  var timer;
+  var currLayout = 0;
+
+  var points = createPoints(numPoints, pointWidth, width, height);
+
+  var toGrid = (points) => gridLayout(points,
+    pointWidth + pointMargin, width);
+  var toSine = (points) => sineLayout(points,
+    pointWidth + pointMargin, width, height);
+  var toSpiral = (points) => spiralLayout(points,
+    pointWidth + pointMargin, width, height);
+  var toPhyllotaxis = (points) => phyllotaxisLayout(points,
+    pointWidth + pointMargin, width / 2, height / 2);
+
+  var layouts = [toSine, toPhyllotaxis, toSpiral, toPhyllotaxis, toGrid];
+
+  function animate() {
+    points.forEach(point => {
+      point.sx = point.x;
+      point.sy = point.y;
+    });
+
+    layouts[currLayout](points);
+
+    points.forEach(point => {
+      point.tx = point.x;
+      point.ty = point.y;
+    });
+
+    timer = d3.timer((elapsed) => {
+      stats.update();
+      var t = Math.min(1, ease(elapsed / duration));
+      points.forEach(point => {
+        point.x = point.sx * (1 - t) + point.tx * t;
+        point.y = point.sy * (1 - t) + point.ty * t;
+      });
+      currentMode.render();
+      if (t === 1) {
+        timer.stop();
+        currLayout = (currLayout + 1) % layouts.length;
+        animate();
+      }
+      // stats.end();
+    });
+  }
+
+  toGrid(points);
+
+  render('base');
+
+  animate();
+</script>
+
+</body>
+</html>
