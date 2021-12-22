@@ -92,7 +92,8 @@ rect.fill();                 // 矩形再次执行绘制
 > \# 为不可见内容，表示私有、抽象，一般用不上；
 > 其他为拓展内容，可用可忽视，层级结构表示继承。
 
-- [\!util](#util)，工具对象
+- [\util](#util)，工具对象
+- [\!ease](#ease)，缓动函数对象
 - [\#Alpha](#\#Alpha\(alpha\):-Alpha;)
   - [\!Rgb](#Rgb\(red\,-green\,-blue\,-alpha\)-extends-Alpha:-Rgb;)，三原色
   - [Hsl](#Hsl\(hue,-saturation,-lightness,-alpha\)-extends-Alpha:-Hsl;)
@@ -142,46 +143,6 @@ rect.fill();                 // 矩形再次执行绘制
 ## util
 
 工具对象，包含常用函数。
-
-### 属性
-
-#### ease: object;
-
-`ease` 为动画缓动函数对象，包含 `3` 种模式：
-
-1. ease.in: object
-2. ease.out: object
-3. ease.inout: object
-
-每种模式均包含 `11` 个常用动画函数，分别是：
-
-1. linear(t: number): number;
-2. sinusoidal(t: number): number;
-3. quadratic(t: number): number;
-4. cubic(t: number): number;
-5. quartic(t: number): number;
-6. quintic(t: number): number;
-7. exponential(t: number): number;
-8. circular(t: number): number;
-9. back(t: number): number;
-10. elastic(t: number): number;
-11. bounce(t: number): number;
-
-##### 参数
-
-- t，动画进度，值范围 [0, 1]
-
-##### 示例
-
-```javascript
-let quad = dopa.util.ease.out.quadratic; // 先快后慢
-for (let t = 0; t <= 1; t += 0.125) {
-  console.log(
-    '动画进度', t,
-    '缓动进度', quad(t)
-  );
-}
-```
 
 #### noop(): this;
 
@@ -428,6 +389,56 @@ console.log(rand(-2, 2, true)); // output: -2/-1/0/1/2
 - end，插值终点
 - ratio，插值进度，通常处于 0 ~ 1 之间
 
+## ease
+
+`ease` 为缓动函数对象。
+
+### 方法
+
+`ease` 对象含有 `31` 个常见的动画缓动函数，其中参数 `t` 为动画进度，值范围 \[0, 1\]。
+
+1. linear(t: number): number;
+2. sinIn(t: number): number;
+3. sinOut(t: number): number;
+4. sinInOut(t: number): number;
+5. quadIn(t: number): number;
+6. quadOut(t: number): number;
+7. quadInOut(t: number): number;
+8. cubicIn(t: number): number;
+9. cubicOut(t: number): number;
+10. cubicInOut(t: number): number;
+11. quartIn(t: number): number;
+12. quartOut(t: number): number;
+13. quartInOut(t: number): number;
+14. quintIn(t: number): number;
+15. quintOut(t: number): number;
+16. quintInOut(t: number): number;
+17. expIn(t: number): number;
+18. expOut(t: number): number;
+19. expInOut(t: number): number;
+20. circleIn(t: number): number;
+21. circleOut(t: number): number;
+22. circleInOut(t: number): number;
+23. backIn(t: number): number;
+24. backOut(t: number): number;
+25. backInOut(t: number): number;
+26. elasticIn(t: number): number;
+27. elasticOut(t: number): number;
+28. elasticInOut(t: number): number;
+29. bounceIn(t: number): number;
+30. bounceOut(t: number): number;
+31. bounceInOut(t: number): number;
+
+```javascript
+let quad = dopa.ease.quadOut; // 动画先快后慢
+for (let t = 0; t <= 1; t += 0.125) {
+  console.log(
+    '动画进度', t.toFixed(3),
+    '缓动进度', quad(t).toFixed(6)
+  );
+}
+```
+
 ## \#Alpha(alpha): Alpha;
 
 透明度 `Alpha` 构造函数。
@@ -436,7 +447,7 @@ console.log(rand(-2, 2, true)); // output: -2/-1/0/1/2
 
 #### alpha: number;
 
-透明度通道，值范围 [0, 255]，默认值 `0`
+透明度通道，值范围 \[0, 255\]，默认值 `0`
 
 ### 方法
 
@@ -529,15 +540,15 @@ console.log(result.toString(true));        // output: rgba(63, 130, 64, 0.2)
 
 #### red: number;
 
-红色，值范围 [0, 255]，默认值 `0`
+红色，值范围 \[0, 255\]，默认值 `0`
 
 #### green: number;
 
-绿色，值范围 [0, 255]，默认值 `0`
+绿色，值范围 \[0, 255\]，默认值 `0`
 
 #### blue: number;
 
-蓝色，值范围 [0, 255]，默认值 `0`
+蓝色，值范围 \[0, 255\]，默认值 `0`
 
 ### 方法
 
@@ -676,15 +687,15 @@ console.log(rgb.toHex(true)); // output: #7fcc407f
 
 #### hue: number;
 
-色相，值范围 [0, 360]，默认值 `0`
+色相，值范围 \[0, 360\]，默认值 `0`
 
 #### saturation: number;
 
-饱和度，值范围 [0, 1]，默认值 `1`
+饱和度，值范围 \[0, 1\]，默认值 `1`
 
 #### lightness: number;
 
-亮度，值范围 [0, 1]，默认值 `0.5`
+亮度，值范围 \[0, 1\]，默认值 `0.5`
 
 ### 方法
 
@@ -738,15 +749,15 @@ console.log(hsl.toString()); // output: hsl(30.11764..., 100%, 50%)
 
 #### lightness: number;
 
-明度，值范围 [0, 100]，默认值 `0`
+明度，值范围 \[0, 100\]，默认值 `0`
 
 #### a: number;
 
-位置，值范围 [-128, 127]，默认值 `0`
+位置，值范围 \[-128, 127\]，默认值 `0`
 
 #### b: number;
 
-位置，值范围 [-128, 127]，默认值 `0`
+位置，值范围 \[-128, 127\]，默认值 `0`
 
 ### 方法
 
@@ -1303,7 +1314,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ##### 参数
 
-- ratio，阈值，值范围 [0, 1]，0 表示仅保留黑色，1 表示仅处理白色，默认值 1
+- ratio，阈值，值范围 \[0, 1\]，0 表示仅保留黑色，1 表示仅处理白色，默认值 1
 - x，遍历起始坐标 x
 - y，遍历起始坐标 y
 - width，遍历宽度
@@ -1337,7 +1348,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ##### 参数
 
-- threshold，阈值，值范围 [0, 1]，默认值 127 / 255
+- threshold，阈值，值范围 \[0, 1\]，默认值 127 / 255
 - x，遍历起始坐标 x
 - y，遍历起始坐标 y
 - width，遍历宽度
@@ -1425,7 +1436,7 @@ y 轴方向的缩放倍数。
 
 #### alpha: number;
 
-透明度，值范围 [0, 1]，`0` 表示透明，`1` 表示不透明，默认值 `1`。
+透明度，值范围 \[0, 1\]，`0` 表示透明，`1` 表示不透明，默认值 `1`。
 
 #### compositeOperation: string;
 
