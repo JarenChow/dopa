@@ -1261,9 +1261,9 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 - type，类型，默认为 PNG 格式，如 'image/png'
 - quality，品质，默认为 0.92
 
-#### put(): this;
+#### fill(): this;
 
-绘制 `imageData`。
+填充绘制。
 
 #### isPointInPath(x: number, y: number): boolean;
 
@@ -1374,7 +1374,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 组 `Group` 构造函数，可作为其他组或形状的父级。
 
-需要注意的是，区别于点的变形方法是改变点的坐标 `x, y`，组的变形是依据 `originX, originY` 而改变的组本身的错切、缩放及旋转。
+需要注意的是，区别于点的变形方法是改变点的坐标 `x, y`，组的变形是依据 `originX, originY` 而改变的组本身的缩放、旋转及错切。
 
 ### 属性
 
@@ -1549,11 +1549,11 @@ CSS 滤镜，默认值 `'none'`。
 
 #### updateFillStyle(): this;
 
-更新组的填充样式，填充时自动调用，手动调用以获取填充样式。
+更新组的填充样式，填充绘制时自动调用，手动调用以获取填充样式。
 
 #### updateStrokeStyle(): this;
 
-更新组的描边样式，描边时自动调用，手动调用以获取描边样式。
+更新组的描边样式，描边绘制时自动调用，手动调用以获取描边样式。
 
 #### updateImageStyle(): this;
 
@@ -1594,22 +1594,6 @@ CSS 滤镜，默认值 `'none'`。
 #### stroke(): this;
 
 描边绘制。
-
-#### fillStroke(fillRule?: CanvasFillRule): this;
-
-先填充再描边。
-
-##### 参数
-
-- fillRule，填充规则，默认值 'nonzero'，可选 'evenodd'
-
-#### strokeFill(fillRule?: CanvasFillRule): this;
-
-先描边再填充。
-
-##### 参数
-
-- fillRule，填充规则，默认值 'nonzero'，可选 'evenodd'
 
 #### clip(fillRule?: CanvasFillRule): this;
 
@@ -1809,10 +1793,6 @@ CSS 滤镜，默认值 `'none'`。
 ##### 参数
 
 - repetition，指定如何重复图像，默认值 'repeat'
-
-#### draw(): this;
-
-绘制 `image`。
 
 ## Wave(startX, startY, width, height, amplitude, method, period, phase, step, originX, originY) extends Rect: Wave;
 
