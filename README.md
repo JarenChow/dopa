@@ -992,14 +992,9 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 `Canvas` 对象创建时触发此回调。
 
-#### onresize(width: number, height: number): void;
+#### onresize(): void;
 
 `Canvas` 对象创建时以及容器 `container` 大小变动后触发此回调。
-
-##### 参数
-
-- width，宽度
-- height，高度
 
 #### onrender(): void;
 
