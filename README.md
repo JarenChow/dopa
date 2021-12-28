@@ -1643,11 +1643,11 @@ CSS 滤镜，默认值 `'none'`。
 
 #### isQuickInPath(x: number, y: number): boolean;
 
-快速判断点 `x, y` 是否处于图形内部。此方法有可能不精确，且并非所有图形均有实现。
+快速判断点 `x, y` 是否处于图形内部。此方法通常为粗略的判断，未实现的图形则回退为 `isPointInPath`。
 
 #### isQuickInPath(x: number, y: number): boolean;
 
-快速判断点 `x, y` 是否处于图形描边处。此方法有可能不精确，且并非所有图形均有实现。
+快速判断点 `x, y` 是否处于图形描边处。此方法通常为粗略的判断，未实现的图形则回退为 `isPointInStroke`。
 
 #### createLinearGradient(x1: number, y1: number, x2: number, y2: number): CanvasGradient;
 
