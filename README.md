@@ -94,49 +94,49 @@ rect.fill();                 // 矩形再次执行绘制
 
 - [\util](#util)，工具对象
 - [\!ease](#ease)，缓动函数对象
-- [\#Alpha](#\#Alpha\(alpha\):-Alpha;)
-  - [\!Rgb](#Rgb\(red\,-green\,-blue\,-alpha\)-extends-Alpha:-Rgb;)，三原色
-  - [Hsl](#Hsl\(hue,-saturation,-lightness,-alpha\)-extends-Alpha:-Hsl;)
-  - [Lab](#Lab\(lightness,-a,-b,-alpha\)-extends-Alpha:-Lab;)
-- [\#Animate](#\#Animate\(duration,-interval\):-Animate;)
-  - [Animation](#Animation\(duration,-interval\)-extends-Animate:-Animation;)
-    - [\!Canvas](#Canvas\(container,-width,-height,-pixelRatio,-duration,-interval\)-extends-Animation:-Canvas;)，画布
-  - [\!Animator](#Animator\(duration,-interval\)-extends-Animate:-Animator;)，子动画
-- [Point](#Point\(x,-y\):-Point;)
-  - [ImageData](#ImageData\(x,-y,-width_or_imageData,-height_or_width,-dirtyX,-dirtyY,-dirtyWidth,-dirtyHeight\)-extends-Point:-ImageData;)
-  - [\!Group](#Group\(originX,-originY\)-extends-Point:-Group;)，组
-    - [Shape](#Shape\(startX,-startY,-originX,-originY\)-extends-Group:-Shape;)
-      - [\!Rect](#Rect\(startX,-startY,-width,-height,-originX,-originY\)-extends-Shape:-Rect;)，矩形
-        - [Grid](#Grid\(startX,-startY,-width,-height,-spacing,-originX,-originY\)-extends-Rect:-Grid;)
-        - [RoundRect](#RoundRect\(startX,-startY,-width,-height,-radius,-originX,-originY\)-extends-Rect:-RoundRect;)
-        - [\!Image](#Image\(startX,-startY,-src_or_image,-originX,-originY,-width,-height,-cropX,-cropY,-cropWidth,-cropHeight\)-extends-Rect:-Image;)，图片
-        - [Wave](#Wave\(startX,-startY,-width,-height,-amplitude,-method,-period,-phase,-originX,-originY\)-extends-Rect:-Wave;)
-      - [\!Text](#Text\(startX,-startY,-text,-maxWidth,-originX,-originY\)-extends-Shape:-Text;)，文字
-      - [\!Arc](#Arc\(startX,-startY,-radius,-startAngle,-endAngle,-anticlockwise,-originX,-originY\)-extends-Shape:-Arc;)，圆弧
-        - [Sector](#Sector\(startX,-startY,-radius,-startAngle,-endAngle,-anticlockwise,-originX,-originY\)-extends-Arc:-Sector;)
-        - [Ring](#Ring\(startX,-startY,-outerRadius,-innerRadius,-startAngle,-endAngle,-anticlockwise,-originX,-originY\)-extends-Arc:-Ring;)
-        - [\!Ellipse](#Ellipse\(startX,-startY,-radiusX,-radiusY,-startAngle,-endAngle,-anticlockwise,-originX,-originY\)-extends-Arc:-Ellipse;)，椭圆
-      - [Isogon](#Isogon\(startX,-startY,-radius,-sides,-originX,-originY\)-extends-Shape:-Isogon;)
-        - [Star](#Star\(startX,-startY,-radius,-sides,-originX,-originY\)-extends-Isogon:-Star;)
-        - [Koch](#Koch\(startX,-startY,-radius,-sides,-originX,-originY\)-extends-Isogon:-Koch;)
-      - [\!Line](#Line\(startX,-startY,-endX,-endY,-originX,-originY\)-extends-Shape:-Line;)，线段
-        - [Link](#Link\(startX,-startY,-endX,-endY,-controlX,-controlY,-originX,-originY\)-extends-Line:-Link;)
-          - [\!Curve](#Curve\(startX,-startY,-endX,-endY,-controlX1,-controlY1,-controlX2,-controlY2,-originX,-originY\)-extends-Link:-Curve;)，贝塞尔曲线
-      - [Triangle](#Triangle\(startX,-startY,-length,-angle,-originX,-originY\)-extends-Shape:-Triangle;)
-        - [Droplet](#Droplet\(startX,-startY,-length,-angle,-originX,-originY\)-extends-Triangle:-Droplet;)
-        - [Heart](#Heart\(startX,-startY,-length,-angle,-originX,-originY\)-extends-Triangle:-Heart;)
-        - [Pin](#Pin\(startX,-startY,-length,-angle,-originX,-originY\)-extends-Triangle:-Pin;)
-      - [\!Path](#Path\(startX,-startY,-path,-originX,-originY\)-extends-Shape:-Path;)，路径
-      - [PolyShape](#PolyShape\(startX,-startY,-points,-length,-originX,-originY\)-extends-Shape:-PolyShape;)
-        - [\#PolylineLike](#\#PolylineLike\(startX,-startY,-points,-length,-originX,-originY\)-extends-PolyShape:-PolylineLike;)
-          - [Polyline](#Polyline\(startX,-startY,-points,-length,-originX,-originY\)-extends-PolylineLike:-Polyline;)
-          - [Bezier](#Bezier\(startX,-startY,-points,-length,-originX,-originY\)-extends-PolylineLike:-Bezier;)
-          - [\#PolygonLike](#\#PolygonLike\(startX,-startY,-points,-length,-originX,-originY\)-extends-PolylineLike:-PolygonLike;)
-            - [Polygon](#Polygon\(startX,-startY,-points,-length,-originX,-originY\)-extends-PolygonLike:-Polygon;)
-            - [Rectangle](#Rectangle\(startX,-startY,-points,-length,-originX,-originY\)-extends-PolygonLike:-Rectangle;)
-            - [Circle](#Circle\(startX,-startY,-points,-length,-originX,-originY\)-extends-PolygonLike:-Circle;)
-            - [SuperEllipse](#SuperEllipse\(startX,-startY,-points,-length,-exponent,-originX,-originY\)-extends-PolygonLike:-SuperEllipse;)
-        - [SmoothLine](#SmoothLine\(startX,-startY,-points,-length,-tension,-originX,-originY\)-extends-PolyShape:-SmoothLine;)
+- [\#Alpha](#\#alpha\(alpha\):-alpha;)
+  - [\!Rgb](#rgb\(red\,-green\,-blue\,-alpha\)-extends-alpha:-rgb;)，三原色
+  - [Hsl](#hsl\(hue,-saturation,-lightness,-alpha\)-extends-alpha:-hsl;)
+  - [Lab](#lab\(lightness,-a,-b,-alpha\)-extends-alpha:-lab;)
+- [\#Animate](#\#animate\(duration,-interval\):-animate;)
+  - [Animation](#animation\(duration,-interval\)-extends-animate:-animation;)
+    - [\!Canvas](#canvas\(container,-width,-height,-pixelratio,-duration,-interval\)-extends-animation:-canvas;)，画布
+  - [\!Animator](#animator\(duration,-interval\)-extends-animate:-animator;)，子动画
+- [Point](#point\(x,-y\):-point;)
+  - [ImageData](#imagedata\(x,-y,-width_or_imagedata,-height_or_width,-dirtyx,-dirtyy,-dirtywidth,-dirtyheight\)-extends-point:-imagedata;)
+  - [\!Group](#group\(originx,-originy\)-extends-point:-group;)，组
+    - [Shape](#shape\(startx,-starty,-originx,-originy\)-extends-group:-shape;)
+      - [\!Rect](#rect\(startx,-starty,-width,-height,-originx,-originy\)-extends-shape:-rect;)，矩形
+        - [Grid](#grid\(startx,-starty,-width,-height,-spacing,-originx,-originy\)-extends-rect:-grid;)
+        - [RoundRect](#roundrect\(startx,-starty,-width,-height,-radius,-originx,-originy\)-extends-rect:-roundrect;)
+        - [\!Image](#image\(startx,-starty,-src_or_image,-originx,-originy,-width,-height,-cropx,-cropy,-cropwidth,-cropheight\)-extends-rect:-image;)，图片
+        - [Wave](#wave\(startx,-starty,-width,-height,-amplitude,-method,-period,-phase,-originx,-originy\)-extends-rect:-wave;)
+      - [\!Text](#text\(startx,-starty,-text,-maxwidth,-originx,-originy\)-extends-shape:-text;)，文字
+      - [\!Arc](#arc\(startx,-starty,-radius,-startangle,-endangle,-anticlockwise,-originx,-originy\)-extends-shape:-arc;)，圆弧
+        - [Sector](#sector\(startx,-starty,-radius,-startangle,-endangle,-anticlockwise,-originx,-originy\)-extends-arc:-sector;)
+        - [Ring](#ring\(startx,-starty,-outerradius,-innerradius,-startangle,-endangle,-anticlockwise,-originx,-originy\)-extends-arc:-ring;)
+        - [\!Ellipse](#ellipse\(startx,-starty,-radiusx,-radiusy,-startangle,-endangle,-anticlockwise,-originx,-originy\)-extends-arc:-ellipse;)，椭圆
+      - [Isogon](#isogon\(startx,-starty,-radius,-sides,-originx,-originy\)-extends-shape:-isogon;)
+        - [Star](#star\(startx,-starty,-radius,-sides,-originx,-originy\)-extends-isogon:-star;)
+        - [Koch](#koch\(startx,-starty,-radius,-sides,-originx,-originy\)-extends-isogon:-koch;)
+      - [\!Line](#line\(startx,-starty,-endx,-endy,-originx,-originy\)-extends-shape:-line;)，线段
+        - [Link](#link\(startx,-starty,-endx,-endy,-controlx,-controly,-originx,-originy\)-extends-line:-link;)
+          - [\!Curve](#curve\(startx,-starty,-endx,-endy,-controlx1,-controly1,-controlx2,-controly2,-originx,-originy\)-extends-link:-curve;)，贝塞尔曲线
+      - [Triangle](#triangle\(startx,-starty,-length,-angle,-originx,-originy\)-extends-shape:-triangle;)
+        - [Droplet](#droplet\(startx,-starty,-length,-angle,-originx,-originy\)-extends-triangle:-droplet;)
+        - [Heart](#heart\(startx,-starty,-length,-angle,-originx,-originy\)-extends-triangle:-heart;)
+        - [Pin](#pin\(startx,-starty,-length,-angle,-originx,-originy\)-extends-triangle:-pin;)
+      - [\!Path](#path\(startx,-starty,-path,-originx,-originy\)-extends-shape:-path;)，路径
+      - [PolyShape](#polyshape\(startx,-starty,-points,-length,-originx,-originy\)-extends-shape:-polyshape;)
+        - [\#PolylineLike](#\#polylinelike\(startx,-starty,-points,-length,-originx,-originy\)-extends-polyshape:-polylinelike;)
+          - [Polyline](#polyline\(startx,-starty,-points,-length,-originx,-originy\)-extends-polylinelike:-polyline;)
+          - [Bezier](#bezier\(startx,-starty,-points,-length,-originx,-originy\)-extends-polylinelike:-bezier;)
+          - [\#PolygonLike](#\#polygonlike\(startx,-starty,-points,-length,-originx,-originy\)-extends-polylinelike:-polygonlike;)
+            - [Polygon](#polygon\(startx,-starty,-points,-length,-originx,-originy\)-extends-polygonlike:-polygon;)
+            - [Rectangle](#rectangle\(startx,-starty,-points,-length,-originx,-originy\)-extends-polygonlike:-rectangle;)
+            - [Circle](#circle\(startx,-starty,-points,-length,-originx,-originy\)-extends-polygonlike:-circle;)
+            - [SuperEllipse](#superellipse\(startx,-starty,-points,-length,-exponent,-originx,-originy\)-extends-polygonlike:-superellipse;)
+        - [SmoothLine](#smoothline\(startx,-starty,-points,-length,-tension,-originx,-originy\)-extends-polyshape:-smoothline;)
 
 # 文档
 
