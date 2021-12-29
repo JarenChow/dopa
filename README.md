@@ -92,51 +92,54 @@ rect.fill();                 // 矩形再次执行绘制
 > \# 为不可见内容，表示私有、抽象，一般用不上；
 > 其他为拓展内容，可用可忽视，层级结构表示继承。
 
-- [\util](#util)，工具对象
+- [util](#util)，工具对象
 - [\!ease](#ease)，缓动函数对象
-- [\#Alpha](#\#alpha\(alpha\):-alpha;)
-  - [\!Rgb](#rgb\(red\,-green\,-blue\,-alpha\)-extends-alpha:-rgb;)，三原色
-  - [Hsl](#hsl\(hue,-saturation,-lightness,-alpha\)-extends-alpha:-hsl;)
-  - [Lab](#lab\(lightness,-a,-b,-alpha\)-extends-alpha:-lab;)
-- [\#Animate](#\#animate\(duration,-interval\):-animate;)
-  - [Animation](#animation\(duration,-interval\)-extends-animate:-animation;)
-    - [\!Canvas](#canvas\(container,-width,-height,-pixelratio,-duration,-interval\)-extends-animation:-canvas;)，画布
-  - [\!Animator](#animator\(duration,-interval\)-extends-animate:-animator;)，子动画
-- [Point](#point\(x,-y\):-point;)
-  - [ImageData](#imagedata\(x,-y,-width_or_imagedata,-height_or_width,-dirtyx,-dirtyy,-dirtywidth,-dirtyheight\)-extends-point:-imagedata;)
-  - [\!Group](#group\(originx,-originy\)-extends-point:-group;)，组
-    - [Shape](#shape\(startx,-starty,-originx,-originy\)-extends-group:-shape;)
-      - [\!Rect](#rect\(startx,-starty,-width,-height,-originx,-originy\)-extends-shape:-rect;)，矩形
-        - [Grid](#grid\(startx,-starty,-width,-height,-spacing,-originx,-originy\)-extends-rect:-grid;)
-        - [RoundRect](#roundrect\(startx,-starty,-width,-height,-radius,-originx,-originy\)-extends-rect:-roundrect;)
-        - [\!Image](#image\(startx,-starty,-src_or_image,-originx,-originy,-width,-height,-cropx,-cropy,-cropwidth,-cropheight\)-extends-rect:-image;)，图片
-        - [Wave](#wave\(startx,-starty,-width,-height,-amplitude,-method,-period,-phase,-originx,-originy\)-extends-rect:-wave;)
-      - [\!Text](#text\(startx,-starty,-text,-maxwidth,-originx,-originy\)-extends-shape:-text;)，文字
-      - [\!Arc](#arc\(startx,-starty,-radius,-startangle,-endangle,-anticlockwise,-originx,-originy\)-extends-shape:-arc;)，圆弧
-        - [Sector](#sector\(startx,-starty,-radius,-startangle,-endangle,-anticlockwise,-originx,-originy\)-extends-arc:-sector;)
-        - [Ring](#ring\(startx,-starty,-outerradius,-innerradius,-startangle,-endangle,-anticlockwise,-originx,-originy\)-extends-arc:-ring;)
-        - [\!Ellipse](#ellipse\(startx,-starty,-radiusx,-radiusy,-startangle,-endangle,-anticlockwise,-originx,-originy\)-extends-arc:-ellipse;)，椭圆
-      - [Isogon](#isogon\(startx,-starty,-radius,-sides,-originx,-originy\)-extends-shape:-isogon;)
-        - [Star](#star\(startx,-starty,-radius,-sides,-originx,-originy\)-extends-isogon:-star;)
-        - [Koch](#koch\(startx,-starty,-radius,-sides,-originx,-originy\)-extends-isogon:-koch;)
-      - [\!Line](#line\(startx,-starty,-endx,-endy,-originx,-originy\)-extends-shape:-line;)，线段
-        - [Link](#link\(startx,-starty,-endx,-endy,-controlx,-controly,-originx,-originy\)-extends-line:-link;)
-          - [\!Curve](#curve\(startx,-starty,-endx,-endy,-controlx1,-controly1,-controlx2,-controly2,-originx,-originy\)-extends-link:-curve;)，贝塞尔曲线
-      - [Triangle](#triangle\(startx,-starty,-length,-angle,-originx,-originy\)-extends-shape:-triangle;)
-        - [Droplet](#droplet\(startx,-starty,-length,-angle,-originx,-originy\)-extends-triangle:-droplet;)
-        - [Heart](#heart\(startx,-starty,-length,-angle,-originx,-originy\)-extends-triangle:-heart;)
-        - [Pin](#pin\(startx,-starty,-length,-angle,-originx,-originy\)-extends-triangle:-pin;)
-      - [\!Path](#path\(startx,-starty,-path,-originx,-originy\)-extends-shape:-path;)，路径
-      - [PolyShape](#polyshape\(startx,-starty,-points,-length,-originx,-originy\)-extends-shape:-polyshape;)
-        - [\#PolylineLike](#\#polylinelike\(startx,-starty,-points,-length,-originx,-originy\)-extends-polyshape:-polylinelike;)
-          - [Polyline](#polyline\(startx,-starty,-points,-length,-originx,-originy\)-extends-polylinelike:-polyline;)
-          - [Bezier](#bezier\(startx,-starty,-points,-length,-originx,-originy\)-extends-polylinelike:-bezier;)
-          - [\#PolygonLike](#\#polygonlike\(startx,-starty,-points,-length,-originx,-originy\)-extends-polylinelike:-polygonlike;)
-            - [Polygon](#polygon\(startx,-starty,-points,-length,-originx,-originy\)-extends-polygonlike:-polygon;)
-            - [Rectangle](#rectangle\(startx,-starty,-points,-length,-originx,-originy\)-extends-polygonlike:-rectangle;)
-            - [Circle](#circle\(startx,-starty,-points,-length,-originx,-originy\)-extends-polygonlike:-circle;)
-            - [SuperEllipse](#superellipse\(startx,-starty,-points,-length,-exponent,-originx,-originy\)-extends-polygonlike:-superellipse;)
-        - [SmoothLine](#smoothline\(startx,-starty,-points,-length,-tension,-originx,-originy\)-extends-polyshape:-smoothline;)
+- [\#Alpha](#alpha)
+  - [\!Rgb](#rgb)，三原色
+  - [Hsl](#hsl)
+  - [Lab](#lab)
+- [\#Animate](#animate)
+  - [Animation](#animation)
+    - [\!Canvas](#canvas)，画布
+  - [\!Animator](#animator)，子动画
+- [Point](#point)
+  - [ImageData](#imageData)
+  - [\!Group](#group)，组
+    - [Shape](#shape)
+      - [\!Rect](#rect)，矩形
+        - [Grid](#grid)
+        - [RoundRect](#roundrect)
+        - [\!Image](#image)，图片
+        - [Wave](#wave)
+      - [\!Text](#text)，文字
+      - [\!Arc](#arc)，圆弧
+        - [Sector](#sector)
+        - [Ring](#ring)
+        - [\!Ellipse](#ellipse)，椭圆
+      - [Isogon](#isogon)
+        - [Star](#star)
+        - [Koch](#koch)
+      - [\!Line](#line)，线段
+        - [Link](#link)
+          - [\!Curve](#curve)，贝塞尔曲线
+      - [Triangle](#triangle)
+        - [Droplet](#droplet)
+        - [Heart](#heart)
+        - [Pin](#pin)
+      - [\!Path](#path)，路径
+      - [PolyShape](#polyshape)
+        - [\#PolylineLike](#polylinelike)
+          - [Polyline](#polyline)
+          - [Bezier](#bezier)
+          - [\#PolygonLike](#polygonlike)
+            - [Polygon](#polygon)
+            - [Rectangle](#rectangle)
+            - [Circle](#circle)
+            - [SuperEllipse](#superellipse)
+        - [SmoothLine](#smoothline)
+- [IEventful](#ieventful)
+- [IRenderable](#irenderable)
+- [IAnimatable](#ianimatable)
 
 # 文档
 
@@ -154,7 +157,7 @@ rect.fill();                 // 矩形再次执行绘制
 
 继承基于原型链，将创建 `SuperType.prototype` 副本并赋值给 `SubType.prototype`。
 
-其中 `...Interface` 类型为 `PropertyDescriptorMap`，相当于 `Object.defineProperties(SubType, properties)`。
+其中 `...Interface` 类型为 `PropertyDescriptorMap` 对象，相当于 `Object.defineProperties(SubType, PropertyDescriptorMap)`。
 
 ##### 参数
 
@@ -165,20 +168,20 @@ rect.fill();                 // 矩形再次执行绘制
 ##### 示例
 
 ```javascript
-function ParentClass(name) {
+function SuperClass(name) {
   this.name = name;
 }
 
-ParentClass.prototype.getName = function () {
+SuperClass.prototype.getName = function () {
   return this.name;
 };
 
-function ChildClass(name, age) {
-  ParentClass.call(this, name);
+function SubClass(name, age) {
+  SuperClass.call(this, name);
   this.age = age;
 }
 
-dopa.util.extends(ChildClass, ParentClass, {
+dopa.util.extends(SubClass, SuperClass, {
   getAge: {
     value: function () {
       return this.age;
@@ -186,9 +189,9 @@ dopa.util.extends(ChildClass, ParentClass, {
   }
 });
 
-let child = new ChildClass('Amy', 18);
-console.log(child.getName()); // output: Amy
-console.log(child.getAge());  // output: 18
+let sub = new SubClass('dopa', 4);
+console.log(sub.getName()); // output: dopa
+console.log(sub.getAge());  // output: 4
 ```
 
 #### measureText(text: string, font: string, align: string, baseline: string, direction: string): TextMetrics;
@@ -439,9 +442,13 @@ for (let t = 0; t <= 1; t += 0.125) {
 }
 ```
 
-## \#Alpha(alpha): Alpha;
+## Alpha
 
-透明度 `Alpha` 构造函数。
+透明度 `Alpha`
+
+### 构造函数
+
+#### Alpha(alpha);
 
 ### 属性
 
@@ -463,9 +470,13 @@ for (let t = 0; t <= 1; t += 0.125) {
 
 将 `Alpha` 对象转换成字符串。
 
-## Rgb(red, green, blue, alpha) extends Alpha: Rgb;
+## Rgb
 
-三原色 `Rgb` 构造函数。
+三原色 `Rgb`
+
+### 构造函数
+
+#### Rgb(red, green, blue, alpha) extends Alpha;
 
 ### 静态方法
 
@@ -679,9 +690,13 @@ console.log(rgb.toHex());     // output: #7fcc40
 console.log(rgb.toHex(true)); // output: #7fcc407f
 ```
 
-## Hsl(hue, saturation, lightness, alpha) extends Alpha: Hsl;
+## Hsl
 
-色彩模式 `Hsl` 构造函数。
+色彩模式 `Hsl`
+
+### 构造函数
+
+#### Hsl(hue, saturation, lightness, alpha) extends Alpha;
 
 ### 属性
 
@@ -741,9 +756,13 @@ console.log(hsl.toString()); // output: hsl(30.11764..., 100%, 50%)
 
 - alpha，布尔值，表示是否包含 alpha 通道
 
-## Lab(lightness, a, b, alpha) extends Alpha: Lab;
+## Lab
 
-色彩模式 `Lab` 构造函数。
+色彩模式 `Lab`
+
+### 构造函数
+
+#### Lab(lightness, a, b, alpha) extends Alpha;
 
 ### 属性
 
@@ -792,9 +811,13 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 将 `Lab` 对象转换成字符串。
 
-## \#Animate(duration, interval): Animate;
+## Animate
 
-私有、抽象的动画基类 `Animate` 构造函数。
+私有、抽象的动画基类 `Animate`
+
+### 构造函数
+
+#### Animate(duration, interval);
 
 ### 属性
 
@@ -870,9 +893,13 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 动画 `结束` 时触发此回调。
 
-## Animation(duration, interval) extends Animate: Animation;
+## Animation
 
-主动画循环 `Animation` 构造函数。
+主动画循环 `Animation`
+
+### 构造函数
+
+#### Animation(duration, interval) extends Animate;
 
 ### 方法
 
@@ -892,9 +919,13 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 - animators，多个子动画对象
 
-## Canvas(container, width, height, pixelRatio, duration, interval) extends Animation: Canvas;
+## Canvas
 
-图层 `Canvas` 构造函数。
+图层 `Canvas`
+
+### 构造函数
+
+#### Canvas(container, width, height, pixelRatio, duration, interval) extends Animation;
 
 `container` 可以是容器 `'#id'` 或 `{container, width, height, pixelRatio, duration, interval}` 配置对象。
 
@@ -1012,9 +1043,13 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 `Canvas` 对象执行 `destroy` 销毁时触发此回调。
 
-## Animator(duration, interval) extends Animate: Animator;
+## Animator
 
-子动画循环 `Animator` 构造函数。
+子动画循环 `Animator`
+
+### 构造函数
+
+#### Animator(duration, interval) extends Animate;
 
 ### 属性
 
@@ -1036,9 +1071,13 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 动画 `reverse()` 反转时触发此回调。
 
-## Point(x, y): Point;
+## Point
 
-点 `Point` 构造函数。
+点 `Point`
+
+### 构造函数
+
+#### Point(x, y);
 
 ### 属性
 
@@ -1169,9 +1208,13 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 - point，另一个点
 
-## ImageData(x, y, width_or_imageData, height_or_width, dirtyX, dirtyY, dirtyWidth, dirtyHeight) extends Point: ImageData;
+## ImageData
 
-`window.ImageData` 的包装器 `ImageData` 构造函数，对 `devicePixelRatio` 敏感。
+`window.ImageData` 的包装器 `ImageData`，对 `devicePixelRatio` 敏感。
+
+### 构造函数
+
+#### ImageData(x, y, width_or_imageData, height_or_width, dirtyX, dirtyY, dirtyWidth, dirtyHeight) extends Point;
 
 ### 属性
 
@@ -1365,11 +1408,15 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 - size，毛玻璃随机像素的矩形大小，正整数，默认值 1，表示无效果
 
-## Group(originX, originY) extends Point: Group;
+## Group
 
-组 `Group` 构造函数，可作为其他组或形状的父级。
+组 `Group`，可作为其他组或形状的父级。
 
 需要注意的是，区别于点的变形方法是改变点的坐标 `x, y`，组的变形是依据 `originX, originY` 而改变的组本身的缩放、旋转及错切。
+
+### 构造函数
+
+#### Group(originX, originY) extends Point;
 
 ### 属性
 
@@ -1381,9 +1428,9 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 变形依据的原点 y 坐标，默认值 `0`。
 
-#### parent: Group | null;
+#### group: Group | null;
 
-设置组的父级 `parent`，父级对象的变形和样式均会影响子对象。
+设置组的父级 `group`，父对象的变形和样式均会影响子对象。
 
 #### skewX: number;
 
@@ -1558,9 +1605,13 @@ CSS 滤镜，默认值 `'none'`。
 
 更新组的文字样式，绘制文字时自动调用，手动调用以获取文字样式。
 
-## Shape(startX, startY, originX, originY) extends Group: Shape;
+## Shape
 
-图形 `Shape` 构造函数，具备绘制能力，也是所有图形的父类。
+图形 `Shape`，具备绘制能力，也是所有图形的父类。
+
+### 构造函数
+
+#### Shape(startX, startY, originX, originY) extends Group;
 
 ### 属性
 
@@ -1683,9 +1734,13 @@ CSS 滤镜，默认值 `'none'`。
 - x，锥形渐变中心点 x，以图形起始绘制点 startX 为基准
 - y，锥形渐变中心点 y，以图形起始绘制点 startY 为基准
 
-## Rect(startX, startY, width, height, originX, originY) extends Shape: Rect;
+## Rect
 
-矩形 `Rect` 构造函数。
+矩形 `Rect`
+
+### 构造函数
+
+#### Rect(startX, startY, width, height, originX, originY) extends Shape;
 
 ### 属性
 
@@ -1713,9 +1768,13 @@ CSS 滤镜，默认值 `'none'`。
 
 只读属性下侧边界。
 
-## Grid(startX, startY, width, height, spacing, originX, originY) extends Rect: Grid;
+## Grid
 
-网格 `Grid` 构造函数。
+网格 `Grid`
+
+### 构造函数
+
+#### Grid(startX, startY, width, height, spacing, originX, originY) extends Rect;
 
 ### 属性
 
@@ -1723,9 +1782,13 @@ CSS 滤镜，默认值 `'none'`。
 
 网格间距，正整数，默认值 `1`。
 
-## RoundRect(startX, startY, width, height, radius, originX, originY) extends Rect: RoundRect;
+## RoundRect
 
-圆角矩形 `RoundRect` 构造函数。
+圆角矩形 `RoundRect`
+
+### 构造函数
+
+#### RoundRect(startX, startY, width, height, radius, originX, originY) extends Rect;
 
 ### 属性
 
@@ -1733,9 +1796,13 @@ CSS 滤镜，默认值 `'none'`。
 
 圆角半径，非负数，默认值 `0`。
 
-## Image(startX, startY, src_or_image, originX, originY, width, height, cropX, cropY, cropWidth, cropHeight) extends Rect: Image;
+## Image
 
-`window.Image` 的包装器图像 `Image` 构造函数。
+`window.Image` 的包装器图像 `Image`
+
+### 构造函数
+
+#### Image(startX, startY, src_or_image, originX, originY, width, height, cropX, cropY, cropWidth, cropHeight) extends Rect;
 
 ### 属性
 
@@ -1789,9 +1856,13 @@ CSS 滤镜，默认值 `'none'`。
 
 - repetition，指定如何重复图像，默认值 'repeat'
 
-## Wave(startX, startY, width, height, amplitude, method, period, phase, step, originX, originY) extends Rect: Wave;
+## Wave
 
-波浪形 `Wave` 构造函数。
+波浪形 `Wave`
+
+### 构造函数
+
+#### Wave(startX, startY, width, height, amplitude, method, period, phase, step, originX, originY) extends Rect;
 
 ### 属性
 
@@ -1815,9 +1886,13 @@ CSS 滤镜，默认值 `'none'`。
 
 步进，正整数，默认值 `1`。
 
-## Text(startX, startY, text, maxWidth, originX, originY) extends Shape: Text;
+## Text
 
-文字 `Text` 构造函数。
+文字 `Text`
+
+### 构造函数
+
+#### Text(startX, startY, text, maxWidth, originX, originY) extends Shape;
 
 ### 属性
 
@@ -1880,9 +1955,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 只读属性下侧边界。
 
-## Arc(startX, startY, radius, startAngle, endAngle, anticlockwise, originX, originY) extends Shape: Arc;
+## Arc
 
-圆弧 `Arc` 构造函数。
+圆弧 `Arc`
+
+### 构造函数
+
+#### Arc(startX, startY, radius, startAngle, endAngle, anticlockwise, originX, originY) extends Shape;
 
 ### 属性
 
@@ -1910,13 +1989,21 @@ console.log(text.font)   // output: 18px sans-serif
 
 只读属性圆心坐标 y。
 
-## Sector(startX, startY, radius, startAngle, endAngle, anticlockwise, originX, originY) extends Arc: Sector;
+## Sector
 
-扇形 `Sector` 构造函数。
+扇形 `Sector`
 
-## Ring(startX, startY, outerRadius, innerRadius, startAngle, endAngle, anticlockwise, originX, originY) extends Arc: Ring;
+### 构造函数
 
-圆环 `Ring` 构造函数。
+#### Sector(startX, startY, radius, startAngle, endAngle, anticlockwise, originX, originY) extends Arc;
+
+## Ring
+
+圆环 `Ring`
+
+### 构造函数
+
+#### Ring(startX, startY, outerRadius, innerRadius, startAngle, endAngle, anticlockwise, originX, originY) extends Arc;
 
 ### 属性
 
@@ -1928,9 +2015,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 内圆半径，默认值 `0`。
 
-## Ellipse(startX, startY, radiusX, radiusY, startAngle, endAngle, anticlockwise, originX, originY) extends Arc: Ellipse;
+## Ellipse
 
-椭圆 `Ellipse` 构造函数。
+椭圆 `Ellipse`
+
+### 构造函数
+
+#### Ellipse(startX, startY, radiusX, radiusY, startAngle, endAngle, anticlockwise, originX, originY) extends Arc;
 
 ### 属性
 
@@ -1942,9 +2033,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 椭圆短轴半径，默认值 `0`。
 
-## Isogon(startX, startY, radius, sides, originX, originY) extends Shape: Isogon;
+## Isogon
 
-正多边形 `Isogon` 构造函数。
+正多边形 `Isogon`
+
+### 构造函数
+
+#### Isogon(startX, startY, radius, sides, originX, originY) extends Shape;
 
 ### 属性
 
@@ -1964,17 +2059,29 @@ console.log(text.font)   // output: 18px sans-serif
 
 只读属性圆心坐标 y。
 
-## Star(startX, startY, radius, sides, originX, originY) extends Isogon: Star;
+## Star
 
-正多角形 `Star` 构造函数。
+正多角形 `Star`
 
-## Koch(startX, startY, radius, sides, originX, originY) extends Isogon: Koch;
+### 构造函数
 
-科赫雪花分形 `Koch` 构造函数。
+#### Star(startX, startY, radius, sides, originX, originY) extends Isogon;
 
-## Line(startX, startY, endX, endY, originX, originY) extends Shape: Line;
+## Koch
 
-线段 `Line` 构造函数。
+科赫雪花分形 `Koch`
+
+### 构造函数
+
+#### Koch(startX, startY, radius, sides, originX, originY) extends Isogon;
+
+## Line
+
+线段 `Line`
+
+### 构造函数
+
+#### Line(startX, startY, endX, endY, originX, originY) extends Shape;
 
 ### 属性
 
@@ -1994,9 +2101,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 只读属性角度。
 
-## Link(startX, startY, endX, endY, controlX, controlY, originX, originY) extends Line: Link;
+## Link
 
-连接线 `Link` 构造函数。使用 `3` 个点生成一段圆弧或线段。
+连接线 `Link`。使用 `3` 个点生成一段圆弧或线段。
+
+### 构造函数
+
+#### Link(startX, startY, endX, endY, controlX, controlY, originX, originY) extends Line;
 
 ### 属性
 
@@ -2016,13 +2127,17 @@ console.log(text.font)   // output: 18px sans-serif
 
 只读属性结束角度，在绘制或 `rebuildPath()` 之后才会产生此值。
 
-## Curve(startX, startY, endX, endY, controlX1, controlY1, controlX2, controlY2, originX, originY) extends Link: Curve;
+## Curve
 
-贝塞尔曲线 `Curve` 构造函数。有以下 `3` 种表现形式：
+贝塞尔曲线 `Curve`。有以下 `3` 种表现形式：
 
 1. 存在 0 个控制点，表现为线段
 2. 存在 1 个控制点，表现为二次贝塞尔曲线
 3. 存在 2 个控制点，表现为三次贝塞尔曲线
+
+### 构造函数
+
+#### Curve(startX, startY, endX, endY, controlX1, controlY1, controlX2, controlY2, originX, originY) extends Link;
 
 ### 属性
 
@@ -2054,9 +2169,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 只读属性中段角度。
 
-## Triangle(startX, startY, length, angle, originX, originY) extends Shape: Triangle;
+## Triangle
 
-等腰三角形 `Triangle` 构造函数。使用顶角垂线长度与顶角角度来定义。
+等腰三角形 `Triangle`。使用顶角垂线长度与顶角角度来定义。
+
+### 构造函数
+
+#### Triangle(startX, startY, length, angle, originX, originY) extends Shape;
 
 ### 属性
 
@@ -2068,21 +2187,37 @@ console.log(text.font)   // output: 18px sans-serif
 
 顶角角度，默认值 `Math.PI / 3`。
 
-## Droplet(startX, startY, length, angle, originX, originY) extends Triangle: Droplet;
+## Droplet
 
-水滴形 `Droplet` 构造函数。
+水滴形 `Droplet`
 
-## Heart(startX, startY, length, angle, originX, originY) extends Triangle: Heart;
+### 构造函数
 
-心形 `Heart` 构造函数。
+#### Droplet(startX, startY, length, angle, originX, originY) extends Triangle;
 
-## Pin(startX, startY, length, angle, originX, originY) extends Triangle: Pin;
+## Heart
 
-大头针形 `Pin` 构造函数。
+心形 `Heart`
 
-## Path(startX, startY, path, originX, originY) extends Shape: Path;
+### 构造函数
 
-`window.Path2D` 的包装器路径 `Path` 构造函数。
+#### Heart(startX, startY, length, angle, originX, originY) extends Triangle;
+
+## Pin
+
+大头针形 `Pin`
+
+### 构造函数
+
+#### Pin(startX, startY, length, angle, originX, originY) extends Triangle;
+
+## Path
+
+`window.Path2D` 的包装器路径 `Path`
+
+### 构造函数
+
+#### Path(startX, startY, path, originX, originY) extends Shape;
 
 ### 属性
 
@@ -2197,9 +2332,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 闭合路径。
 
-## PolyShape(startX, startY, points, length, originX, originY) extends Shape: PolyShape;
+## PolyShape
 
-以原始数据点来驱动的图形 `PolyShape` 构造函数。
+以原始数据点来驱动的图形 `PolyShape`
+
+### 构造函数
+
+#### PolyShape(startX, startY, points, length, originX, originY) extends Shape;
 
 ### 属性
 
@@ -2288,29 +2427,53 @@ console.log(text.font)   // output: 18px sans-serif
 - built，构建的数据点
 - ...，由 rebuildPoints() 组建而来
 
-## \#PolylineLike(startX, startY, points, length, originX, originY) extends PolyShape: PolylineLike;
+## PolylineLike
 
-私有、抽象的类折线段 `PolylineLike` 构造函数。
+私有、抽象的类折线段 `PolylineLike`
 
-## Polyline(startX, startY, points, length, originX, originY) extends PolylineLike: Polyline;
+### 构造函数
 
-折线段 `Polyline` 构造函数。
+#### PolylineLike(startX, startY, points, length, originX, originY) extends PolyShape;
 
-## Bezier(startX, startY, points, length, originX, originY) extends PolylineLike: Bezier;
+## Polyline
 
-多阶贝塞尔曲线 `Bezier` 构造函数。
+折线段 `Polyline`
 
-## \#PolygonLike(startX, startY, points, length, originX, originY) extends PolylineLike: PolygonLike;
+### 构造函数
 
-私有、抽象的类多边形 `PolygonLike` 构造函数。
+#### Polyline(startX, startY, points, length, originX, originY) extends PolylineLike;
 
-## Polygon(startX, startY, points, length, originX, originY) extends PolygonLike: Polygon;
+## Bezier
 
-多边形 `Polygon` 构造函数。
+多阶贝塞尔曲线 `Bezier`
 
-## Rectangle(startX, startY, points, length, originX, originY) extends PolygonLike: Rectangle;
+### 构造函数
 
-矩形 `Rectangle` 构造函数。
+#### Bezier(startX, startY, points, length, originX, originY) extends PolylineLike;
+
+## PolygonLike
+
+私有、抽象的类多边形 `PolygonLike`
+
+### 构造函数
+
+#### PolygonLike(startX, startY, points, length, originX, originY) extends PolylineLike;
+
+## Polygon
+
+多边形 `Polygon`
+
+### 构造函数
+
+#### Polygon(startX, startY, points, length, originX, originY) extends PolygonLike;
+
+## Rectangle
+
+矩形 `Rectangle`
+
+### 构造函数
+
+#### Rectangle(startX, startY, points, length, originX, originY) extends PolygonLike;
 
 ### 属性
 
@@ -2338,9 +2501,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 只读属性下侧边界。
 
-## Circle(startX, startY, points, length, originX, originY) extends PolygonLike: Circle;
+## Circle
 
-圆形 `Circle` 构造函数。
+圆形 `Circle`
+
+### 构造函数
+
+#### Circle(startX, startY, points, length, originX, originY) extends PolygonLike;
 
 ### 属性
 
@@ -2356,9 +2523,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 只读属性圆心坐标 y。
 
-## SuperEllipse(startX, startY, points, length, exponent, originX, originY) extends PolygonLike: SuperEllipse;
+## SuperEllipse
 
-超椭圆 `SuperEllipse` 构造函数。
+超椭圆 `SuperEllipse`
+
+### 构造函数
+
+#### SuperEllipse(startX, startY, points, length, exponent, originX, originY) extends PolygonLike;
 
 ### 属性
 
@@ -2366,12 +2537,28 @@ console.log(text.font)   // output: 18px sans-serif
 
 超椭圆公式中的幂值，默认值 `3`。
 
-## SmoothLine(startX, startY, points, length, tension, originX, originY) extends PolyShape: SmoothLine;
+## SmoothLine
 
-平滑曲线 `SmoothLine` 构造函数。
+平滑曲线 `SmoothLine`
+
+### 构造函数
+
+#### SmoothLine(startX, startY, points, length, tension, originX, originY) extends PolyShape;
 
 ### 属性
 
 #### tension: number;
 
 张力，默认值 `1`。
+
+## IEventful
+
+`PropertyDescriptorMap` 对象，用于混入事件订阅模式。
+
+## IRenderable
+
+`PropertyDescriptorMap` 对象，用于混入可运行渲染标识。
+
+## IAnimatable
+
+`PropertyDescriptorMap` 对象，用于混入可运行动画标识。

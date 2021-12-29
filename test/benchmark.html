@@ -10,10 +10,20 @@
   </script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dopa-corner"></script>
-</head>
-<body style="margin:0;">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
 
-<h1>Current render mode: <span id="mode"></span></h1>
+    .mode {
+      color: #ff88ff;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Current render mode: <span class="mode"></span></h1>
 <div>
   <div id="fps" style="display: inline-block;"></div>
   <input type="button" onclick="render('base')" value="base"/>
@@ -24,7 +34,7 @@
 <div id="main" style="width:600px;height:600px;"></div>
 <a id="corner" href="https://github.com/JarenChow/dopa" style="position: fixed;top: 0;right: 0;"></a>
 
-<h1>Specific render code: </h1>
+<h1><span class="mode"></span> render code: </h1>
 <p id="code">
   TEST
 </p>
@@ -38,9 +48,9 @@
   var currentMode = null;
 
   function render(mode) {
-    var domMode = document.querySelector('#mode');
-    if (domMode.innerHTML === mode) return;
-    domMode.innerHTML = mode;
+    var renderMode = document.querySelectorAll('.mode');
+    if (renderMode[0].innerHTML === mode) return;
+    renderMode.forEach(dom => dom.innerHTML = mode);
     currentMode && currentMode.destroy();
     currentMode = renderMap[mode]();
     console.time('create ' + mode);
