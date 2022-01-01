@@ -1904,10 +1904,6 @@ CSS 滤镜，默认值 `'none'`。
 
 文本最大宽度，默认值 `undefined`。
 
-#### width: number;
-
-文本宽度，通常此宽度值由 `font` 影响，通过手动设置此值，可反之修改以 `px` 为单位的 `font` 样式。
-
 ##### 示例
 
 ```javascript
@@ -1926,6 +1922,10 @@ text.fill();
 console.log(text.width); // output: 96.82910...
 console.log(text.font)   // output: 18px sans-serif
 ```
+
+#### readonly width: number;
+
+只读属性文本宽度。
 
 #### readonly metrics: TextMetrics;
 
