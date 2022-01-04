@@ -933,11 +933,11 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 #### readonly container: Element;
 
-只读属性容器 `container`，通常是 `div` 引用。
+只读属性容器 `container`，在初始化时指定，值为 `wrapper.parentNode`。
 
 #### readonly wrapper: Element;
 
-只读属性包装器 `wrapper`，通常是 `div` 引用，可实现重叠多张画布。
+只读属性包装容器 `wrapper`，一般初始化时自动生成，可实现重叠多张画布。
 
 #### readonly canvas: HTMLCanvasElement;
 
