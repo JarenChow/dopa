@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" style="width: 100%;height: 100%;"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/dopa"></script>
+<script>
+  let layer = new dopa.Canvas({
+    container: '#app',
+    duration: Infinity
+  });
+
+  const easing = layer.create('bezier', {
+    points: [0, 0, 0, 0.4, 1, 0.4, 1, 1]
+  }).updateTransform().data;
+
+  let background = layer.create('rect');
+
+  let group = layer.create('group', {
+    fillStyle: 'white',
+    font: '24px sans-serif',
+    align: 'center',
+    baseline: 'middle'
+  });
+
+  let circles = [];
+  for (let i = 0; i < 6; i++) {
+    let circle = layer.create('arc', {
+      group,
+      radius: 3,
+      originY: -30,
+      alpha: 0
+    });
+    circles.push(circle);
+    let delay = layer.create('animator', {
+      onfinish() {
+        circle.alpha = 1;
+        animator.loop = 1;
+        animator.start();
+        delay.duration = 1050;
+      },
+      duration: 175 * i
+    });
+    let animator = layer.create('animator', {
+      onstart() {
+        animator.index = 0;
+      },
+      onupdate(ratio) {
+        while (ratio > easing[animator.index]) animator.index += 2;
+        circle.rotation = Math.PI * 2 * easing[animator.index + 1];
+      },
+      onfinish() {
+        if (animator.loop--) animator.start();
+        else circle.alpha = 0, delay.start();
+      },
+      duration: 1750
+    });
+    delay.start();
+  }
+  let text1 = layer.create('text', {
+    group,
+    text: '更新正在进行中。',
+    y: 32
+  });
+  let text2 = layer.create('text', {
+    group: text1,
+    text: '请保持计算机打开状态。',
+    y: 32
+  });
+
+  layer.on('resize', () => {
+    let width = layer.width, height = layer.height;
+    background.width = width;
+    background.height = height;
+    group.x = width / 2;
+    group.y = height / 2;
+  });
+  layer.on('render', () => { // 渲染部分
+    background.fill();
+    circles.forEach(circle => circle.fill());
+    text1.fill();
+    text2.fill();
+  });
+
+  layer.cursor = 'none';                       // 禁用鼠标样式
+  layer.on('keydown', (ev) => {
+    if (ev.key !== 'F11') ev.preventDefault(); // 禁用键盘按键（除 F11 外）
+  });
+  layer.on('contextmenu', (ev) => {            // 禁用鼠标右键
+    ev.preventDefault();
+  });
+  layer.on('visibilitychange', (visible) => {
+    visible ? layer.render() : layer.pause();
+  });
+</script>
+
+</body>
+</html>

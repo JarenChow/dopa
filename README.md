@@ -85,6 +85,7 @@ rect.fill();                 // 矩形再次执行绘制
 1. [dopa-corner](https://JarenChow.github.io/dopa-corner)：[tholman/github-corners](https://github.com/tholman/github-corners) 的 dopa 实现
 2. [dopa-stats](https://JarenChow.github.io/dopa-stats)：[mrdoob/stats.js](https://github.com/mrdoob/stats.js) 的 dopa 实现
 3. [dopa-benchmark](https://JarenChow.github.io/dopa/test/benchmark.html)：原生 API、ZRender 以及 Dopa 的渲染性能测试
+4. [loading](https://JarenChow.github.io/dopa/test/loading.html)：Windows 系统更新动画
 
 # 结构
 
@@ -2450,6 +2451,12 @@ console.log(text.font)   // output: 18px sans-serif
 ### 构造函数
 
 #### Bezier(startX, startY, points, length, originX, originY) extends PolylineLike;
+
+### 方法
+
+#### elevateDegree(): this;
+
+贝塞尔曲线升阶，新增一组控制点并保持曲线的形状。
 
 ## PolygonLike
 
