@@ -18,18 +18,19 @@
 
 <script src="https://cdn.jsdelivr.net/npm/dopa"></script>
 <script>
-  let layer = new dopa.Canvas({
+  let layer = new dopa.Canvas({ // 画布
     container: '#app',
     duration: Infinity
   });
 
-  const easing = layer.create('bezier', {
-    points: [0, 0, 0, 0.4, 1, 0.4, 1, 1]
+  const easing = layer.create('bezier', { // 贝塞尔动画曲线数据
+    points: [0, 0, 0, 0.4, 1, 0.4, 1, 1],
+    length: 1000
   }).updateTransform().data;
 
-  let background = layer.create('rect');
+  let background = layer.create('rect'); // 背景
 
-  let group = layer.create('group', {
+  let group = layer.create('group', { // 组
     fillStyle: 'white',
     font: '24px sans-serif',
     align: 'center',
@@ -37,15 +38,15 @@
   });
 
   let circles = [];
-  for (let i = 0; i < 6; i++) {
-    let circle = layer.create('arc', {
+  for (let i = 1; i <= 6; i++) {
+    let circle = layer.create('arc', { // 圆
       group,
       radius: 3,
       originY: -30,
       alpha: 0
     });
     circles.push(circle);
-    let delay = layer.create('animator', {
+    let delay = layer.create('animator', { // 延迟执行
       onfinish() {
         circle.alpha = 1;
         animator.loop = 1;
@@ -54,7 +55,7 @@
       },
       duration: 175 * i
     });
-    let animator = layer.create('animator', {
+    let animator = layer.create('animator', { // 动画实现
       onstart() {
         animator.index = 0;
       },
@@ -70,40 +71,37 @@
     });
     delay.start();
   }
-  let text1 = layer.create('text', {
+  let text1 = layer.create('text', { // 文本 1
     group,
     text: '更新正在进行中。',
     y: 32
   });
-  let text2 = layer.create('text', {
+  let text2 = layer.create('text', { // 文本 2
     group: text1,
     text: '请保持计算机打开状态。',
     y: 32
   });
 
-  layer.on('resize', () => {
+  layer.on('resize', () => { // 画布调整大小的回调
     let width = layer.width, height = layer.height;
     background.width = width;
     background.height = height;
     group.x = width / 2;
     group.y = height / 2;
   });
-  layer.on('render', () => { // 渲染部分
+  layer.on('render', () => { // 画布具体渲染部分
     background.fill();
     circles.forEach(circle => circle.fill());
     text1.fill();
     text2.fill();
   });
 
-  layer.cursor = 'none';                       // 禁用鼠标样式
-  layer.on('keydown', (ev) => {
-    if (ev.key !== 'F11') ev.preventDefault(); // 禁用键盘按键（除 F11 外）
-  });
-  layer.on('contextmenu', (ev) => {            // 禁用鼠标右键
+  layer.cursor = 'none'; // 隐藏鼠标样式
+  layer.on('contextmenu', (ev) => { // 禁用右键默认行为
     ev.preventDefault();
   });
-  layer.on('visibilitychange', (visible) => {
-    visible ? layer.render() : layer.pause();
+  layer.on('visibilitychange', () => { // 监听界面可见性
+    layer.visible ? layer.render() : layer.pause();
   });
 </script>
 

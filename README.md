@@ -962,7 +962,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 #### readonly visible: boolean;
 
-只读属性 `visible` 表示 `canvas` 是否可见，浏览器显示及隐藏或滚动条均会使得此值发生变化。
+只读属性 `visible` 表示 `canvas` 是否可见。
 
 #### cursor: string;
 
@@ -1032,13 +1032,9 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 `Canvas` 对象创建时以及动画运行时触发此回调。
 
-#### onvisibilitychange(visible: boolean): void;
+#### onvisibilitychange(): void;
 
 `Canvas` 对象显示在视窗中、移出视窗时、浏览器显示及隐藏时触发此回调。
-
-##### 参数
-
-- visible，是否可见
 
 #### ondestroy(): void;
 
@@ -1063,10 +1059,6 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 #### reverse(): this;
 
 反转动画。
-
-#### isForward(): boolean;
-
-判断动画是否正向运行。
 
 #### onreverse(): void;
 
