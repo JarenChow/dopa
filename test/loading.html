@@ -25,6 +25,7 @@
 
   const easing = layer.create('bezier', { // 贝塞尔动画曲线数据
     points: [0, 0, 0, 0.4, 1, 0.4, 1, 1],
+    // points: [0, 0, 0.04, 0.4, 0.94, 0.4, 1, 1],
     length: 1000
   }).updateTransform().data;
 
@@ -67,7 +68,7 @@
         if (animator.loop--) animator.start();
         else circle.alpha = 0, delay.start();
       },
-      duration: 1750
+      duration: 1600
     });
     delay.start();
   }
