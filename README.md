@@ -1169,38 +1169,6 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 - point，另一个点
 
-#### multiply(point: Point): this;
-
-乘以，可视为复数相乘。通常用来缩放或旋转对象。
-
-##### 参数
-
-- point，另一个点
-
-#### divide(point: Point): this;
-
-除以，可视为复数相除。
-
-##### 参数
-
-- point，另一个点
-
-#### dot(point: Point): number;
-
-点积。
-
-##### 参数
-
-- point，另一个点
-
-#### cross(point: Point): number;
-
-叉积。
-
-##### 参数
-
-- point，另一个点
-
 ## ImageData
 
 `window.ImageData` 的包装器 `ImageData`，对 `devicePixelRatio` 敏感。
