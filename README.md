@@ -399,7 +399,7 @@ console.log(rand(-2, 2, true)); // output: -2/-1/0/1/2
 
 ### 方法
 
-`ease` 对象含有 `31` 个常见的动画缓动函数，其中参数 `t` 为动画进度，值范围 \[0, 1\]。
+`ease` 对象含有 `31` 个常见的动画缓动函数与 `1` 个贝塞尔缓动函数构造器，其中参数 `t` 为动画进度，值范围 \[0, 1\]。
 
 1. linear(t: number): number;
 2. sinIn(t: number): number;
@@ -432,6 +432,7 @@ console.log(rand(-2, 2, true)); // output: -2/-1/0/1/2
 29. bounceIn(t: number): number;
 30. bounceOut(t: number): number;
 31. bounceInOut(t: number): number;
+32. bezier(x1, y1, x2, y2): function (t: number): number;
 
 ```javascript
 let quad = dopa.ease.quadOut; // 动画先快后慢
