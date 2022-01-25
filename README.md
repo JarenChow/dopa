@@ -138,9 +138,7 @@ rect.fill();                 // 矩形再次执行绘制
             - [Circle](#circle)
             - [SuperEllipse](#superellipse)
         - [SmoothLine](#smoothline)
-- [IEventful](#ieventful)
-- [IRenderable](#irenderable)
-- [IAnimatable](#ianimatable)
+- [Eventful](#eventful)
 
 # 文档
 
@@ -432,7 +430,7 @@ console.log(rand(-2, 2, true)); // output: -2/-1/0/1/2
 29. bounceIn(t: number): number;
 30. bounceOut(t: number): number;
 31. bounceInOut(t: number): number;
-32. bezier(x1, y1, x2, y2): function (t: number): number;
+32. bezier(x1, y1, x2, y2): Function (t: number): number;
 
 ```javascript
 let quad = dopa.ease.quadOut; // 动画先快后慢
@@ -446,7 +444,7 @@ for (let t = 0; t <= 1; t += 0.125) {
 
 ## Alpha
 
-透明度 `Alpha`
+透明度
 
 ### 构造函数
 
@@ -474,80 +472,11 @@ for (let t = 0; t <= 1; t += 0.125) {
 
 ## Rgb
 
-三原色 `Rgb`
+三原色
 
 ### 构造函数
 
 #### Rgb(red, green, blue, alpha) extends Alpha;
-
-### 静态方法
-
-#### mixing(rgb1: Rgb, rgb2: Rgb, ratio: number, result: Rgb): void;
-
-使用插值方式混合两个颜色。
-
-##### 参数
-
-- rgb1，起始 Rgb 颜色
-- rgb2，结束 Rgb 颜色
-- ratio，混合比例
-- result，结果 Rgb 颜色
-
-##### 示例
-
-```javascript
-let rgb1 = new dopa.Rgb(0, 0, 0);
-let rgb2 = new dopa.Rgb(127, 255, 0);
-let result = new dopa.Rgb();
-dopa.Rgb.mixing(rgb1, rgb2, 0.5, result);
-console.log(result.red, result.green, result.blue); // output: 63.5 127.5 0
-```
-
-#### gammaMixing(srgb1: Rgb, srgb2: Rgb, ratio: number, result: Rgb): void;
-
-使用插值方式混合两个 `srgb` 颜色，并使用 `gamma` 调整，通常这会使得颜色过渡更显自然。
-
-##### 参数
-
-- srgb1，起始 sRgb 颜色
-- srgb2，结束 sRgb 颜色
-- ratio，混合比例
-- result，结果 sRgb 颜色
-
-##### 示例
-
-```javascript
-let srgb1 = new dopa.Rgb(0, 0, 0);
-let srgb2 = new dopa.Rgb(0.5, 1, 0);
-let result = new dopa.Rgb();
-dopa.Rgb.gammaMixing(srgb1, srgb2, 0.5, result);
-console.log(result.red, result.green, result.blue);
-// output: 0.09974709285888907 0.19949418571777813 0
-```
-
-#### extract(back1: Rgb, mix1: Rgb, back2_or_alpha: Rgb | number, mix2_or_result: Rgb, result?: Rgb): void;
-
-用于提取颜色 `R`。
-
-当底色 `R1` 与 `R` 合成 `R2`，知道 `R` 的透明度或者拥有另一组底色 `R3` 与 `R` 合成 `R4`，则可提取前置颜色 `R`。
-
-##### 参数
-
-- back1，底色 1
-- mix1，混合色 1
-- back2_or_alpha，底色 2 或透明度
-- mix2_or_result，混合色 2 或结果
-- result，结果
-
-##### 示例
-
-```javascript
-let back1 = new dopa.Rgb(128, 0, 64);      // 底色
-let mix1 = new dopa.Rgb(115, 26, 64);      // 混合色
-let result = new dopa.Rgb();               // 求前置色
-dopa.Rgb.extract(back1, mix1, 51, result); // alpha 值 51，即 0.2
-console.log(result.toString(true));        // output: rgba(63, 130, 64, 0.2)
-```
 
 ### 属性
 
@@ -694,7 +623,7 @@ console.log(rgb.toHex(true)); // output: #7fcc407f
 
 ## Hsl
 
-色彩模式 `Hsl`
+色彩空间
 
 ### 构造函数
 
@@ -760,7 +689,7 @@ console.log(hsl.toString()); // output: hsl(30.11764..., 100%, 50%)
 
 ## Lab
 
-色彩模式 `Lab`
+色彩空间
 
 ### 构造函数
 
@@ -815,7 +744,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Animate
 
-私有、抽象的动画基类 `Animate`
+私有、抽象的动画基类
 
 ### 构造函数
 
@@ -897,7 +826,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Animation
 
-主动画循环 `Animation`
+主动画循环
 
 ### 构造函数
 
@@ -923,7 +852,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Canvas
 
-图层 `Canvas`
+画布（图层）
 
 ### 构造函数
 
@@ -1012,9 +941,9 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 - type，类型，如 'render'/'click'
 - listener，监听器函数
 
-#### create(Ctor: string | function, source?: object | any, options?: object | any): Ctor;
+#### create(Ctor: string | Function, source?: object | any, options?: object | any): Ctor;
 
-创建一个以 `Ctor` 作为构造函数的对象并添加给 `Canvas`。
+使用 `new` 操作符创建一个以 `Ctor` 作为构造函数的对象并添加给 `Canvas`。
 
 ##### 参数
 
@@ -1043,7 +972,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Animator
 
-子动画循环 `Animator`
+子动画循环
 
 ### 构造函数
 
@@ -1067,7 +996,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Point
 
-点 `Point`
+点
 
 ### 构造函数
 
@@ -1172,7 +1101,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## ImageData
 
-`window.ImageData` 的包装器 `ImageData`，对 `devicePixelRatio` 敏感。
+`window.ImageData` 的包装器，对 `devicePixelRatio` 敏感。
 
 ### 构造函数
 
@@ -1372,7 +1301,7 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 ## Group
 
-组 `Group`，可作为其他组或形状的父级。
+组，可作为其他组或形状的父级。
 
 需要注意的是，区别于点的变形方法是改变点的坐标 `x, y`，组的变形是依据 `originX, originY` 而改变的组本身的缩放、旋转及错切。
 
@@ -1569,7 +1498,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Shape
 
-图形 `Shape`，具备绘制能力，也是所有图形的父类。
+图形（形状），具备绘制能力，也是所有图形的父类。
 
 ### 构造函数
 
@@ -1698,7 +1627,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Rect
 
-矩形 `Rect`
+矩形
 
 ### 构造函数
 
@@ -1732,7 +1661,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Grid
 
-网格 `Grid`
+网格
 
 ### 构造函数
 
@@ -1746,7 +1675,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## RoundRect
 
-圆角矩形 `RoundRect`
+圆角矩形
 
 ### 构造函数
 
@@ -1760,7 +1689,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Image
 
-`window.Image` 的包装器图像 `Image`
+图像，`window.Image` 的包装器
 
 ### 构造函数
 
@@ -1820,7 +1749,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Wave
 
-波浪形 `Wave`
+波浪形
 
 ### 构造函数
 
@@ -1850,7 +1779,7 @@ CSS 滤镜，默认值 `'none'`。
 
 ## Text
 
-文字 `Text`
+文字
 
 ### 构造函数
 
@@ -1919,7 +1848,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Arc
 
-圆弧 `Arc`
+圆弧
 
 ### 构造函数
 
@@ -1953,7 +1882,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Sector
 
-扇形 `Sector`
+扇形
 
 ### 构造函数
 
@@ -1961,7 +1890,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Ring
 
-圆环 `Ring`
+圆环
 
 ### 构造函数
 
@@ -1979,7 +1908,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Ellipse
 
-椭圆 `Ellipse`
+椭圆
 
 ### 构造函数
 
@@ -1997,7 +1926,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Isogon
 
-正多边形 `Isogon`
+正多边形
 
 ### 构造函数
 
@@ -2023,7 +1952,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Star
 
-正多角形 `Star`
+正多角形
 
 ### 构造函数
 
@@ -2031,7 +1960,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Koch
 
-科赫雪花分形 `Koch`
+科赫雪花分形
 
 ### 构造函数
 
@@ -2039,7 +1968,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Line
 
-线段 `Line`
+线段
 
 ### 构造函数
 
@@ -2065,7 +1994,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Link
 
-连接线 `Link`。使用 `3` 个点生成一段圆弧或线段。
+连接线。使用 `3` 个点生成一段圆弧或线段。
 
 ### 构造函数
 
@@ -2091,7 +2020,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Curve
 
-贝塞尔曲线 `Curve`。有以下 `3` 种表现形式：
+贝塞尔曲线。有以下 `3` 种表现形式：
 
 1. 存在 0 个控制点，表现为线段
 2. 存在 1 个控制点，表现为二次贝塞尔曲线
@@ -2133,7 +2062,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Triangle
 
-等腰三角形 `Triangle`。使用顶角垂线长度与顶角角度来定义。
+等腰三角形。使用顶角垂线长度与顶角角度来定义。
 
 ### 构造函数
 
@@ -2151,7 +2080,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Droplet
 
-水滴形 `Droplet`
+水滴形
 
 ### 构造函数
 
@@ -2159,7 +2088,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Heart
 
-心形 `Heart`
+心形
 
 ### 构造函数
 
@@ -2167,7 +2096,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Pin
 
-大头针形 `Pin`
+大头针形
 
 ### 构造函数
 
@@ -2175,7 +2104,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Path
 
-`window.Path2D` 的包装器路径 `Path`
+`window.Path2D` 的包装器路径
 
 ### 构造函数
 
@@ -2296,7 +2225,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## PolyShape
 
-以原始数据点来驱动的图形 `PolyShape`
+以原始数据点来驱动的图形
 
 ### 构造函数
 
@@ -2391,7 +2320,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## PolylineLike
 
-私有、抽象的类折线段 `PolylineLike`
+私有、抽象的类折线段
 
 ### 构造函数
 
@@ -2399,7 +2328,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Polyline
 
-折线段 `Polyline`
+折线段
 
 ### 构造函数
 
@@ -2407,7 +2336,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Bezier
 
-多阶贝塞尔曲线 `Bezier`
+多阶贝塞尔曲线
 
 ### 构造函数
 
@@ -2421,7 +2350,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## PolygonLike
 
-私有、抽象的类多边形 `PolygonLike`
+私有、抽象的类多边形
 
 ### 构造函数
 
@@ -2429,7 +2358,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Polygon
 
-多边形 `Polygon`
+多边形
 
 ### 构造函数
 
@@ -2437,7 +2366,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Rectangle
 
-矩形 `Rectangle`
+矩形
 
 ### 构造函数
 
@@ -2471,7 +2400,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## Circle
 
-圆形 `Circle`
+圆形
 
 ### 构造函数
 
@@ -2493,7 +2422,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## SuperEllipse
 
-超椭圆 `SuperEllipse`
+超椭圆
 
 ### 构造函数
 
@@ -2507,7 +2436,7 @@ console.log(text.font)   // output: 18px sans-serif
 
 ## SmoothLine
 
-平滑曲线 `SmoothLine`
+平滑曲线
 
 ### 构造函数
 
@@ -2519,14 +2448,32 @@ console.log(text.font)   // output: 18px sans-serif
 
 张力，默认值 `1`。
 
-## IEventful
+## Eventful
 
-`PropertyDescriptorMap` 对象，用于混入事件订阅模式。
+事件订阅
 
-## IRenderable
+### 构造函数
 
-`PropertyDescriptorMap` 对象，用于混入可运行渲染标识。
+#### Eventful();
 
-## IAnimatable
+### 方法
 
-`PropertyDescriptorMap` 对象，用于混入可运行动画标识。
+#### on(type: string, listener: Function): this;
+
+注册类型为 `type` 的 `listener` 事件监听器。
+
+#### off(type: string, listener: Function): this;
+
+移除类型为 `type` 的 `listener` 事件监听器。
+
+#### trigger(type: string, ev: any): this;
+
+触发类型为 `type` 的事件，以 `ev` 为事件对象。
+
+#### onregister(type);
+
+首次注册 `type` 事件时的回调。
+
+### onunregister(type);
+
+最终移除 `type` 事件时的回调。
