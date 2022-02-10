@@ -1,6 +1,6 @@
 {
   "name": "dopa",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "HTML5 canvas 2d library",
   "main": "dist/dopa.min.js",
   "scripts": {

@@ -138,7 +138,7 @@ rect.fill();                 // 矩形再次执行绘制
             - [Circle](#circle)
             - [SuperEllipse](#superellipse)
         - [SmoothLine](#smoothline)
-- [Eventful](#eventful)
+- [Event](#event)
 
 # 文档
 
@@ -932,9 +932,9 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 销毁 `Canvas` 的方法。
 
-#### on(type: string, listener: (ev | null) => void): this;
+#### on(type: string, listener: (Event | undefined) => void): this;
 
-添加事件监听器的方法，可添加 `内置回调` 的监听器以及 `WindowEventMap` 中的多数监听器。
+添加事件监听器的方法，可添加 `WindowEventMap` 中的多数监听器以及 `内置回调` 的监听器。
 
 ##### 参数
 
@@ -1323,14 +1323,6 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 设置组的父级 `group`，父对象的变形和样式均会影响子对象。
 
-#### skewX: number;
-
-x 轴方向的错切度数，以弧度表示。
-
-#### skewY: number;
-
-y 轴方向的错切度数，以弧度表示。
-
 #### scaleX: number;
 
 x 轴方向的缩放倍数。
@@ -1338,6 +1330,14 @@ x 轴方向的缩放倍数。
 #### scaleY: number;
 
 y 轴方向的缩放倍数。
+
+#### skewX: number;
+
+x 轴方向的错切度数，以弧度表示。
+
+#### skewY: number;
+
+y 轴方向的错切度数，以弧度表示。
 
 #### rotation: number;
 
@@ -2448,13 +2448,13 @@ console.log(text.font)   // output: 18px sans-serif
 
 张力，默认值 `1`。
 
-## Eventful
+## Event
 
 事件订阅
 
 ### 构造函数
 
-#### Eventful();
+#### Event();
 
 ### 方法
 
@@ -2466,9 +2466,9 @@ console.log(text.font)   // output: 18px sans-serif
 
 移除类型为 `type` 的 `listener` 事件监听器。
 
-#### trigger(type: string, ev: any): this;
+#### trigger(type: string, event: any): this;
 
-触发类型为 `type` 的事件，以 `ev` 为事件对象。
+触发类型为 `type` 的事件，以 `event` 为事件对象，若 `event` 非原始数据类型，会被赋予 `stop()` 方法的能力，用于停止事件分发。
 
 #### onregister(type);
 
