@@ -820,9 +820,13 @@ console.log(rgb + '');               // output: rgb(255, 155, 43)
 
 动画 `stop()` 停止时触发此回调。
 
-#### onfinish(): void;
+#### onfinish(forward): void;
 
 动画 `结束` 时触发此回调。
+
+##### 参数
+
+- forward，布尔值，动画方向
 
 ## Animation
 
